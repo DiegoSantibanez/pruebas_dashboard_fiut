@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <style>
+            .leaflet-container {
+                background-color: #f8f9fa;
+            }
+            .leaflet-popup-content-wrapper {
+                background: white;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                border-radius: 8px;
+            }
+            .leaflet-popup-content {
+                margin: 0;
+            }
+            .leaflet-popup-close-button {
+                color: #666;
+            }
+            /* Eliminar recuadro azul */
+            .leaflet-interactive {
+                outline: none !important;
+            }
+            /* Mejorar efecto hover */
+            path {
+                transition: all 0.3s ease;
+                stroke: white !important;
+                stroke-width: 1px !important;
+                filter: drop-shadow(0 0 0 rgba(0,0,0,0));
+            }
+            path:hover {
+                stroke-width: 2px !important;
+                filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+                transform: translateY(-2px);
+            }
+            /* Estilo para popups */
+            .custom-popup {
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                line-height: 1.4;
+            }
+        </style>
+        
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_18928dd2d355095890b27402a0def21b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div style="
+                position: fixed; 
+                bottom: 20px; 
+                right: 20px;
+                background: white;
+                padding: 10px;
+                border-radius: 4px;
+                box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+                z-index: 1000;">
+                <div style="font-weight: bold; margin-bottom: 5px;">Provincias RM</div>
+                <div style="font-size: 10px; color: #666; margin-bottom: 8px;">
+                    Actualizado: 2025-03-11
+                </div>
+        
+                <div style="display: flex; align-items: center; margin: 3px 0;">
+                    <div style="
+                        background: #FF9999;
+                        width: 12px;
+                        height: 12px;
+                        margin-right: 8px;
+                        border: 1px solid rgba(255,255,255,0.8);
+                        border-radius: 2px;">
+                    </div>
+                    <span style="color: #333;">Santiago</span>
+                </div>
+            
+                <div style="display: flex; align-items: center; margin: 3px 0;">
+                    <div style="
+                        background: #99CCFF;
+                        width: 12px;
+                        height: 12px;
+                        margin-right: 8px;
+                        border: 1px solid rgba(255,255,255,0.8);
+                        border-radius: 2px;">
+                    </div>
+                    <span style="color: #333;">Cordillera</span>
+                </div>
+            
+                <div style="display: flex; align-items: center; margin: 3px 0;">
+                    <div style="
+                        background: #B9F6CA;
+                        width: 12px;
+                        height: 12px;
+                        margin-right: 8px;
+                        border: 1px solid rgba(255,255,255,0.8);
+                        border-radius: 2px;">
+                    </div>
+                    <span style="color: #333;">Chacabuco</span>
+                </div>
+            
+                <div style="display: flex; align-items: center; margin: 3px 0;">
+                    <div style="
+                        background: #FFB366;
+                        width: 12px;
+                        height: 12px;
+                        margin-right: 8px;
+                        border: 1px solid rgba(255,255,255,0.8);
+                        border-radius: 2px;">
+                    </div>
+                    <span style="color: #333;">Maipo</span>
+                </div>
+            
+                <div style="display: flex; align-items: center; margin: 3px 0;">
+                    <div style="
+                        background: #E1BEE7;
+                        width: 12px;
+                        height: 12px;
+                        margin-right: 8px;
+                        border: 1px solid rgba(255,255,255,0.8);
+                        border-radius: 2px;">
+                    </div>
+                    <span style="color: #333;">Melipilla</span>
+                </div>
+            
+                <div style="display: flex; align-items: center; margin: 3px 0;">
+                    <div style="
+                        background: #FFF59D;
+                        width: 12px;
+                        height: 12px;
+                        margin-right: 8px;
+                        border: 1px solid rgba(255,255,255,0.8);
+                        border-radius: 2px;">
+                    </div>
+                    <span style="color: #333;">Talagante</span>
+                </div>
+            </div>
+    
+            <div class="folium-map" id="map_18928dd2d355095890b27402a0def21b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_18928dd2d355095890b27402a0def21b = L.map(
+                "map_18928dd2d355095890b27402a0def21b",
+                {
+                    center: [-33.5, -70.7],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 9,
+  "zoomControl": true,
+  "preferCanvas": false,
+  "scrollWheelZoom": true,
+  "dragging": true,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_059f11ae9234070857beee51d5dc8037 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_059f11ae9234070857beee51d5dc8037.addTo(map_18928dd2d355095890b27402a0def21b);
+        
+    
+            var feature_group_ac4b854f19df8186899202ad0c997a46 = L.featureGroup(
+                {
+}
+            );
+        
+    
+        function geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FF9999", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9 = L.geoJson(null, {
+                onEachFeature: geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9_onEachFeature,
+            
+                style: geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9_styler,
+            ...{
+}
+        });
+
+        function geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9_add (data) {
+            geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9
+                .addData(data);
+        }
+            geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9_add({"features": [{"geometry": {"coordinates": [[[-70.6381, -33.5186], [-70.6365, -33.5187], [-70.631, -33.558], [-70.6547, -33.555], [-70.6381, -33.5186]]], "type": "Polygon"}, "properties": {"Comuna": "San Ram\u00f3n", "Provincia": "Santiago", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13131, "codregion": 13, "dis_elec": 13, "objectid": 332, "shape_leng": 11733.4867, "st_area_sh": 9056279.7521, "st_length_": 14061.5288}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     San Ramón
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_261fdd28bb29c55878eb4f238a5db46b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e012aa0643e478e16a19e85c3421211d = $(`<div id="html_e012aa0643e478e16a19e85c3421211d" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">San Ramón</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Santiago</p>                         <p style="margin: 5px 0;"><b>Población:</b> 165,800 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 18,307 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 196,960 m² (0.1970 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_261fdd28bb29c55878eb4f238a5db46b.setContent(html_e012aa0643e478e16a19e85c3421211d);
+            
+        
+
+        geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9.bindPopup(popup_261fdd28bb29c55878eb4f238a5db46b)
+        ;
+
+        
+    
+    
+            geo_json_7e3f12b606bd1e77fd485ad3eaefd5c9.addTo(feature_group_ac4b854f19df8186899202ad0c997a46);
+        
+    
+        function geo_json_185a09a37c6588480bd340f602f2648a_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FF9999", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_185a09a37c6588480bd340f602f2648a_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_185a09a37c6588480bd340f602f2648a_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_185a09a37c6588480bd340f602f2648a.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_185a09a37c6588480bd340f602f2648a_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_185a09a37c6588480bd340f602f2648a = L.geoJson(null, {
+                onEachFeature: geo_json_185a09a37c6588480bd340f602f2648a_onEachFeature,
+            
+                style: geo_json_185a09a37c6588480bd340f602f2648a_styler,
+            ...{
+}
+        });
+
+        function geo_json_185a09a37c6588480bd340f602f2648a_add (data) {
+            geo_json_185a09a37c6588480bd340f602f2648a
+                .addData(data);
+        }
+            geo_json_185a09a37c6588480bd340f602f2648a_add({"features": [{"geometry": {"coordinates": [[[-70.7193, -33.4132], [-70.7224, -33.4389], [-70.7821, -33.4169], [-70.7595, -33.4123], [-70.7193, -33.4132]]], "type": "Polygon"}, "properties": {"Comuna": "Cerro Navia", "Provincia": "Santiago", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13103, "codregion": 13, "dis_elec": 9, "objectid": 304, "shape_leng": 16740.5089, "st_area_sh": 16106927.6958, "st_length_": 19971.3089}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_185a09a37c6588480bd340f602f2648a.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Cerro Navia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_4fc4071dc5427ee29a02204eb2ad3017 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d3558f9f9a7d5d2a01b321b2ce64afee = $(`<div id="html_d3558f9f9a7d5d2a01b321b2ce64afee" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Cerro Navia</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Santiago</p>                         <p style="margin: 5px 0;"><b>Población:</b> 265,244 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 16,467 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 226,297 m² (0.2263 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_4fc4071dc5427ee29a02204eb2ad3017.setContent(html_d3558f9f9a7d5d2a01b321b2ce64afee);
+            
+        
+
+        geo_json_185a09a37c6588480bd340f602f2648a.bindPopup(popup_4fc4071dc5427ee29a02204eb2ad3017)
+        ;
+
+        
+    
+    
+            geo_json_185a09a37c6588480bd340f602f2648a.addTo(feature_group_ac4b854f19df8186899202ad0c997a46);
+        
+    
+        function geo_json_501f90be99f0880ea5758e83ea43d619_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FF9999", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_501f90be99f0880ea5758e83ea43d619_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_501f90be99f0880ea5758e83ea43d619_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_501f90be99f0880ea5758e83ea43d619.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_501f90be99f0880ea5758e83ea43d619_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_501f90be99f0880ea5758e83ea43d619 = L.geoJson(null, {
+                onEachFeature: geo_json_501f90be99f0880ea5758e83ea43d619_onEachFeature,
+            
+                style: geo_json_501f90be99f0880ea5758e83ea43d619_styler,
+            ...{
+}
+        });
+
+        function geo_json_501f90be99f0880ea5758e83ea43d619_add (data) {
+            geo_json_501f90be99f0880ea5758e83ea43d619
+                .addData(data);
+        }
+            geo_json_501f90be99f0880ea5758e83ea43d619_add({"features": [{"geometry": {"coordinates": [[[-70.6631, -33.3992], [-70.6819, -33.403], [-70.7003, -33.3661], [-70.6568, -33.3765], [-70.6631, -33.3992]]], "type": "Polygon"}, "properties": {"Comuna": "Conchal\u00ed", "Provincia": "Santiago", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13104, "codregion": 13, "dis_elec": 9, "objectid": 305, "shape_leng": 13816.6343, "st_area_sh": 15802665.9189, "st_length_": 16624.3582}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_501f90be99f0880ea5758e83ea43d619.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Conchalí
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_435a49f7ab5f4d8e606c16ee32c9a223 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_596ca3daa34dbadf077b87a27dd9c507 = $(`<div id="html_596ca3daa34dbadf077b87a27dd9c507" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Conchalí</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Santiago</p>                         <p style="margin: 5px 0;"><b>Población:</b> 253,910 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 16,067 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 172,058 m² (0.1721 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_435a49f7ab5f4d8e606c16ee32c9a223.setContent(html_596ca3daa34dbadf077b87a27dd9c507);
+            
+        
+
+        geo_json_501f90be99f0880ea5758e83ea43d619.bindPopup(popup_435a49f7ab5f4d8e606c16ee32c9a223)
+        ;
+
+        
+    
+    
+            geo_json_501f90be99f0880ea5758e83ea43d619.addTo(feature_group_ac4b854f19df8186899202ad0c997a46);
+        
+    
+        function geo_json_8029d7410d9e28fb29b6869b2eb010fb_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FF9999", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_8029d7410d9e28fb29b6869b2eb010fb_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_8029d7410d9e28fb29b6869b2eb010fb_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_8029d7410d9e28fb29b6869b2eb010fb.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_8029d7410d9e28fb29b6869b2eb010fb_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_8029d7410d9e28fb29b6869b2eb010fb = L.geoJson(null, {
+                onEachFeature: geo_json_8029d7410d9e28fb29b6869b2eb010fb_onEachFeature,
+            
+                style: geo_json_8029d7410d9e28fb29b6869b2eb010fb_styler,
+            ...{
+}
+        });
+
+        function geo_json_8029d7410d9e28fb29b6869b2eb010fb_add (data) {
+            geo_json_8029d7410d9e28fb29b6869b2eb010fb
+                .addData(data);
+        }
+            geo_json_8029d7410d9e28fb29b6869b2eb010fb_add({"features": [{"geometry": {"coordinates": [[[-70.6632, -33.5851], [-70.7007, -33.5729], [-70.6853, -33.5391], [-70.6531, -33.5487], [-70.6632, -33.5851]]], "type": "Polygon"}, "properties": {"Comuna": "El Bosque", "Provincia": "Santiago", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13105, "codregion": 13, "dis_elec": 13, "objectid": 306, "shape_leng": 15584.8638, "st_area_sh": 20608987.1951, "st_length_": 18894.4532}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_8029d7410d9e28fb29b6869b2eb010fb.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     El Bosque
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_12c26c9802ec6ef11b082b47566f591f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_beb15c39b600a94ed40b1143cd53acd6 = $(`<div id="html_beb15c39b600a94ed40b1143cd53acd6" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">El Bosque</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Santiago</p>                         <p style="margin: 5px 0;"><b>Población:</b> 325,010 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 15,770 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 199,504 m² (0.1995 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_12c26c9802ec6ef11b082b47566f591f.setContent(html_beb15c39b600a94ed40b1143cd53acd6);
+            
+        
+
+        geo_json_8029d7410d9e28fb29b6869b2eb010fb.bindPopup(popup_12c26c9802ec6ef11b082b47566f591f)
+        ;
+
+        
+    
+    
+            geo_json_8029d7410d9e28fb29b6869b2eb010fb.addTo(feature_group_ac4b854f19df8186899202ad0c997a46);
+        
+    
+        function geo_json_d0e0606bed0a36b83279d4eaa1781073_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FF9999", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_d0e0606bed0a36b83279d4eaa1781073_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_d0e0606bed0a36b83279d4eaa1781073_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_d0e0606bed0a36b83279d4eaa1781073.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_d0e0606bed0a36b83279d4eaa1781073_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_d0e0606bed0a36b83279d4eaa1781073 = L.geoJson(null, {
+                onEachFeature: geo_json_d0e0606bed0a36b83279d4eaa1781073_onEachFeature,
+            
+                style: geo_json_d0e0606bed0a36b83279d4eaa1781073_styler,
+            ...{
+}
+        });
+
+        function geo_json_d0e0606bed0a36b83279d4eaa1781073_add (data) {
+            geo_json_d0e0606bed0a36b83279d4eaa1781073
+                .addData(data);
+        }
+            geo_json_d0e0606bed0a36b83279d4eaa1781073_add({"features": [{"geometry": {"coordinates": [[[-70.6324, -33.5581], [-70.6122, -33.5556], [-70.6059, -33.602], [-70.6286, -33.6277], [-70.6706, -33.6074], [-70.6549, -33.5549], [-70.6324, -33.5581]]], "type": "Polygon"}, "properties": {"Comuna": "La Pintana", "Provincia": "Santiago", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13112, "codregion": 13, "dis_elec": 12, "objectid": 313, "shape_leng": 26302.7906, "st_area_sh": 44063102.067, "st_length_": 31608.3044}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_d0e0606bed0a36b83279d4eaa1781073.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     La Pintana
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_ccd0b1c17c0427be685e8e10496c2bb6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b602402863e58f7198208f9738d1ded6 = $(`<div id="html_b602402863e58f7198208f9738d1ded6" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">La Pintana</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Santiago</p>                         <p style="margin: 5px 0;"><b>Población:</b> 354,670 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 8,049 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 222,274 m² (0.2223 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_ccd0b1c17c0427be685e8e10496c2bb6.setContent(html_b602402863e58f7198208f9738d1ded6);
+            
+        
+
+        geo_json_d0e0606bed0a36b83279d4eaa1781073.bindPopup(popup_ccd0b1c17c0427be685e8e10496c2bb6)
+        ;
+
+        
+    
+    
+            geo_json_d0e0606bed0a36b83279d4eaa1781073.addTo(feature_group_ac4b854f19df8186899202ad0c997a46);
+        
+    
+        function geo_json_f774359a80646277511fa6907c5ab97e_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FF9999", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_f774359a80646277511fa6907c5ab97e_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_f774359a80646277511fa6907c5ab97e_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_f774359a80646277511fa6907c5ab97e.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_f774359a80646277511fa6907c5ab97e_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_f774359a80646277511fa6907c5ab97e = L.geoJson(null, {
+                onEachFeature: geo_json_f774359a80646277511fa6907c5ab97e_onEachFeature,
+            
+                style: geo_json_f774359a80646277511fa6907c5ab97e_styler,
+            ...{
+}
+        });
+
+        function geo_json_f774359a80646277511fa6907c5ab97e_add (data) {
+            geo_json_f774359a80646277511fa6907c5ab97e
+                .addData(data);
+        }
+            geo_json_f774359a80646277511fa6907c5ab97e_add({"features": [{"geometry": {"coordinates": [[[-70.6941, -33.5024], [-70.6712, -33.5106], [-70.6857, -33.5389], [-70.7067, -33.5312], [-70.6941, -33.5024]]], "type": "Polygon"}, "properties": {"Comuna": "Lo Espejo", "Provincia": "Santiago", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13116, "codregion": 13, "dis_elec": 13, "objectid": 317, "shape_leng": 11405.976, "st_area_sh": 11804789.5926, "st_length_": 13685.618}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_f774359a80646277511fa6907c5ab97e.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Lo Espejo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_aad46f34b856300066dc20d175ca0fe5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d2f1ca9b61e5762d05d01a367409ccc5 = $(`<div id="html_d2f1ca9b61e5762d05d01a367409ccc5" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Lo Espejo</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Santiago</p>                         <p style="margin: 5px 0;"><b>Población:</b> 197,608 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 16,739 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 208,352 m² (0.2084 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_aad46f34b856300066dc20d175ca0fe5.setContent(html_d2f1ca9b61e5762d05d01a367409ccc5);
+            
+        
+
+        geo_json_f774359a80646277511fa6907c5ab97e.bindPopup(popup_aad46f34b856300066dc20d175ca0fe5)
+        ;
+
+        
+    
+    
+            geo_json_f774359a80646277511fa6907c5ab97e.addTo(feature_group_ac4b854f19df8186899202ad0c997a46);
+        
+    
+        function geo_json_d4a4ca1e2746978536bece84bc5e7a89_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FF9999", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_d4a4ca1e2746978536bece84bc5e7a89_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_d4a4ca1e2746978536bece84bc5e7a89_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_d4a4ca1e2746978536bece84bc5e7a89.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_d4a4ca1e2746978536bece84bc5e7a89_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_d4a4ca1e2746978536bece84bc5e7a89 = L.geoJson(null, {
+                onEachFeature: geo_json_d4a4ca1e2746978536bece84bc5e7a89_onEachFeature,
+            
+                style: geo_json_d4a4ca1e2746978536bece84bc5e7a89_styler,
+            ...{
+}
+        });
+
+        function geo_json_d4a4ca1e2746978536bece84bc5e7a89_add (data) {
+            geo_json_d4a4ca1e2746978536bece84bc5e7a89
+                .addData(data);
+        }
+            geo_json_d4a4ca1e2746978536bece84bc5e7a89_add({"features": [{"geometry": {"coordinates": [[[-70.7055, -33.4571], [-70.7389, -33.4534], [-70.7408, -33.4363], [-70.707, -33.438], [-70.7055, -33.4571]]], "type": "Polygon"}, "properties": {"Comuna": "Lo Prado", "Provincia": "Santiago", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13117, "codregion": 13, "dis_elec": 9, "objectid": 318, "shape_leng": 10795.4333, "st_area_sh": 9412959.3278, "st_length_": 12827.1594}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_d4a4ca1e2746978536bece84bc5e7a89.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Lo Prado
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_2191c9598642e1e181f2b31cacd78ad8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a9e2be2971536e5b8825cc56f5fd06cf = $(`<div id="html_a9e2be2971536e5b8825cc56f5fd06cf" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Lo Prado</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Santiago</p>                         <p style="margin: 5px 0;"><b>Población:</b> 192,498 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 20,450 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 255,036 m² (0.2550 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_2191c9598642e1e181f2b31cacd78ad8.setContent(html_a9e2be2971536e5b8825cc56f5fd06cf);
+            
+        
+
+        geo_json_d4a4ca1e2746978536bece84bc5e7a89.bindPopup(popup_2191c9598642e1e181f2b31cacd78ad8)
+        ;
+
+        
+    
+    
+            geo_json_d4a4ca1e2746978536bece84bc5e7a89.addTo(feature_group_ac4b854f19df8186899202ad0c997a46);
+        
+    
+        function geo_json_f7cca4ff3d18e0439e276d490fd49815_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FF9999", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_f7cca4ff3d18e0439e276d490fd49815_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_f7cca4ff3d18e0439e276d490fd49815_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_f7cca4ff3d18e0439e276d490fd49815.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_f7cca4ff3d18e0439e276d490fd49815_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_f7cca4ff3d18e0439e276d490fd49815 = L.geoJson(null, {
+                onEachFeature: geo_json_f7cca4ff3d18e0439e276d490fd49815_onEachFeature,
+            
+                style: geo_json_f7cca4ff3d18e0439e276d490fd49815_styler,
+            ...{
+}
+        });
+
+        function geo_json_f7cca4ff3d18e0439e276d490fd49815_add (data) {
+            geo_json_f7cca4ff3d18e0439e276d490fd49815
+                .addData(data);
+        }
+            geo_json_f7cca4ff3d18e0439e276d490fd49815_add({"features": [{"geometry": {"coordinates": [[[-70.6712, -33.5106], [-70.6954, -33.5024], [-70.6856, -33.4781], [-70.655, -33.4767], [-70.6712, -33.5106]]], "type": "Polygon"}, "properties": {"Comuna": "Pedro Aguirre Cerda", "Provincia": "Santiago", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13121, "codregion": 13, "dis_elec": 13, "objectid": 322, "shape_leng": 13054.5635, "st_area_sh": 12258083.3879, "st_length_": 15005.0494}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_f7cca4ff3d18e0439e276d490fd49815.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Pedro Aguirre Cerda
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_4f782def3bf9ad619a51c934559d03ce = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2bf082238426303da1651a97f2c67a04 = $(`<div id="html_2bf082238426303da1651a97f2c67a04" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Pedro Aguirre Cerda</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Santiago</p>                         <p style="margin: 5px 0;"><b>Población:</b> 202,348 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 16,507 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 470,204 m² (0.4702 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_4f782def3bf9ad619a51c934559d03ce.setContent(html_2bf082238426303da1651a97f2c67a04);
+            
+        
+
+        geo_json_f7cca4ff3d18e0439e276d490fd49815.bindPopup(popup_4f782def3bf9ad619a51c934559d03ce)
+        ;
+
+        
+    
+    
+            geo_json_f7cca4ff3d18e0439e276d490fd49815.addTo(feature_group_ac4b854f19df8186899202ad0c997a46);
+        
+    
+        function geo_json_c445e28533f32fb2160fd1917c02ba29_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FF9999", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_c445e28533f32fb2160fd1917c02ba29_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_c445e28533f32fb2160fd1917c02ba29_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_c445e28533f32fb2160fd1917c02ba29.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_c445e28533f32fb2160fd1917c02ba29_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_c445e28533f32fb2160fd1917c02ba29 = L.geoJson(null, {
+                onEachFeature: geo_json_c445e28533f32fb2160fd1917c02ba29_onEachFeature,
+            
+                style: geo_json_c445e28533f32fb2160fd1917c02ba29_styler,
+            ...{
+}
+        });
+
+        function geo_json_c445e28533f32fb2160fd1917c02ba29_add (data) {
+            geo_json_c445e28533f32fb2160fd1917c02ba29
+                .addData(data);
+        }
+            geo_json_c445e28533f32fb2160fd1917c02ba29_add({"features": [{"geometry": {"coordinates": [[[-70.6961, -33.382], [-70.6713, -33.4265], [-70.7822, -33.4137], [-70.7565, -33.3837], [-70.6961, -33.382]]], "type": "Polygon"}, "properties": {"Comuna": "Renca", "Provincia": "Santiago", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13128, "codregion": 13, "dis_elec": 9, "objectid": 329, "shape_leng": 28974.9567, "st_area_sh": 34071271.6529, "st_length_": 34707.5182}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_c445e28533f32fb2160fd1917c02ba29.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Renca
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_f0a2e3ee93d923bd5269156504aab34f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_71f386d54ee7e4a9d14294856f89be8b = $(`<div id="html_71f386d54ee7e4a9d14294856f89be8b" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Renca</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Santiago</p>                         <p style="margin: 5px 0;"><b>Población:</b> 294,302 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 8,637 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 430,753 m² (0.4308 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_f0a2e3ee93d923bd5269156504aab34f.setContent(html_71f386d54ee7e4a9d14294856f89be8b);
+            
+        
+
+        geo_json_c445e28533f32fb2160fd1917c02ba29.bindPopup(popup_f0a2e3ee93d923bd5269156504aab34f)
+        ;
+
+        
+    
+    
+            geo_json_c445e28533f32fb2160fd1917c02ba29.addTo(feature_group_ac4b854f19df8186899202ad0c997a46);
+        
+    
+            feature_group_ac4b854f19df8186899202ad0c997a46.addTo(map_18928dd2d355095890b27402a0def21b);
+        
+    
+            var feature_group_3921fec137f2fc363ee9baff9647db99 = L.featureGroup(
+                {
+}
+            );
+        
+    
+        function geo_json_e1f2d153b690de97162a1d232a83f8da_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#99CCFF", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_e1f2d153b690de97162a1d232a83f8da_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_e1f2d153b690de97162a1d232a83f8da_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_e1f2d153b690de97162a1d232a83f8da.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_e1f2d153b690de97162a1d232a83f8da_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_e1f2d153b690de97162a1d232a83f8da = L.geoJson(null, {
+                onEachFeature: geo_json_e1f2d153b690de97162a1d232a83f8da_onEachFeature,
+            
+                style: geo_json_e1f2d153b690de97162a1d232a83f8da_styler,
+            ...{
+}
+        });
+
+        function geo_json_e1f2d153b690de97162a1d232a83f8da_add (data) {
+            geo_json_e1f2d153b690de97162a1d232a83f8da
+                .addData(data);
+        }
+            geo_json_e1f2d153b690de97162a1d232a83f8da_add({"features": [{"geometry": {"coordinates": [[[-70.4438, -33.5825], [-70.4069, -33.647], [-70.4409, -33.6834], [-70.4005, -33.7119], [-70.4037, -33.8143], [-70.4278, -33.8516], [-70.4735, -33.8627], [-70.4867, -33.8307], [-70.5246, -33.8325], [-70.5355, -33.8003], [-70.5955, -33.7815], [-70.6558, -33.6757], [-70.6299, -33.6415], [-70.4438, -33.5825]]], "type": "Polygon"}, "properties": {"Comuna": "Pirque", "Provincia": "Cordillera", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13202, "codregion": 13, "dis_elec": 12, "objectid": 291, "shape_leng": 103841.8265, "st_area_sh": 644688715.664, "st_length_": 125049.1989}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_e1f2d153b690de97162a1d232a83f8da.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Pirque
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_6cc8475b8ee063f5968238605454913f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3bfa5022ceb5abc4353218d3356e03ef = $(`<div id="html_3bfa5022ceb5abc4353218d3356e03ef" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Pirque</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Cordillera</p>                         <p style="margin: 5px 0;"><b>Población:</b> 53,042 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 82 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 53,985 m² (0.0540 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_6cc8475b8ee063f5968238605454913f.setContent(html_3bfa5022ceb5abc4353218d3356e03ef);
+            
+        
+
+        geo_json_e1f2d153b690de97162a1d232a83f8da.bindPopup(popup_6cc8475b8ee063f5968238605454913f)
+        ;
+
+        
+    
+    
+            geo_json_e1f2d153b690de97162a1d232a83f8da.addTo(feature_group_3921fec137f2fc363ee9baff9647db99);
+        
+    
+        function geo_json_0330c4d37bd326efcf700cf20a507755_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#99CCFF", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_0330c4d37bd326efcf700cf20a507755_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_0330c4d37bd326efcf700cf20a507755_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_0330c4d37bd326efcf700cf20a507755.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_0330c4d37bd326efcf700cf20a507755_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_0330c4d37bd326efcf700cf20a507755 = L.geoJson(null, {
+                onEachFeature: geo_json_0330c4d37bd326efcf700cf20a507755_onEachFeature,
+            
+                style: geo_json_0330c4d37bd326efcf700cf20a507755_styler,
+            ...{
+}
+        });
+
+        function geo_json_0330c4d37bd326efcf700cf20a507755_add (data) {
+            geo_json_0330c4d37bd326efcf700cf20a507755
+                .addData(data);
+        }
+            geo_json_0330c4d37bd326efcf700cf20a507755_add({"features": [{"geometry": {"coordinates": [[[-70.5046, -33.5463], [-70.486, -33.546], [-70.4987, -33.6081], [-70.6312, -33.6428], [-70.6112, -33.5705], [-70.5046, -33.5463]]], "type": "Polygon"}, "properties": {"Comuna": "Puente Alto", "Provincia": "Cordillera", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13201, "codregion": 13, "dis_elec": 12, "objectid": 292, "shape_leng": 48961.6548, "st_area_sh": 126944640.332, "st_length_": 58874.1369}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_0330c4d37bd326efcf700cf20a507755.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Puente Alto
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_6c09ca4003d235afade8d7424bd00d0a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e7523ef3d6cba4151b32feb56a228271 = $(`<div id="html_e7523ef3d6cba4151b32feb56a228271" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Puente Alto</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Cordillera</p>                         <p style="margin: 5px 0;"><b>Población:</b> 1,136,212 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 8,950 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 1,043,865 m² (1.0439 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_6c09ca4003d235afade8d7424bd00d0a.setContent(html_e7523ef3d6cba4151b32feb56a228271);
+            
+        
+
+        geo_json_0330c4d37bd326efcf700cf20a507755.bindPopup(popup_6c09ca4003d235afade8d7424bd00d0a)
+        ;
+
+        
+    
+    
+            geo_json_0330c4d37bd326efcf700cf20a507755.addTo(feature_group_3921fec137f2fc363ee9baff9647db99);
+        
+    
+        function geo_json_2ca90c6048f48740281d5d82fae26c84_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#99CCFF", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_2ca90c6048f48740281d5d82fae26c84_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_2ca90c6048f48740281d5d82fae26c84_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_2ca90c6048f48740281d5d82fae26c84.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_2ca90c6048f48740281d5d82fae26c84_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_2ca90c6048f48740281d5d82fae26c84 = L.geoJson(null, {
+                onEachFeature: geo_json_2ca90c6048f48740281d5d82fae26c84_onEachFeature,
+            
+                style: geo_json_2ca90c6048f48740281d5d82fae26c84_styler,
+            ...{
+}
+        });
+
+        function geo_json_2ca90c6048f48740281d5d82fae26c84_add (data) {
+            geo_json_2ca90c6048f48740281d5d82fae26c84
+                .addData(data);
+        }
+            geo_json_2ca90c6048f48740281d5d82fae26c84_add({"features": [{"geometry": {"coordinates": [[[-70.0041, -34.2621], [-70.028, -34.2878], [-70.0528, -34.2801], [-70.0673, -34.2066], [-70.1127, -34.2018], [-70.1642, -34.1591], [-70.1417, -34.1202], [-70.1837, -34.0333], [-70.2437, -34.0341], [-70.2619, -34.0714], [-70.3403, -34.0532], [-70.3211, -33.9993], [-70.3762, -33.9279], [-70.3749, -33.8836], [-70.4338, -33.8536], [-70.4077, -33.8316], [-70.4004, -33.7124], [-70.4409, -33.6834], [-70.4069, -33.647], [-70.4438, -33.5787], [-70.4953, -33.5998], [-70.5004, -33.5793], [-70.4361, -33.4818], [-70.3514, -33.4916], [-70.2189, -33.4122], [-70.1759, -33.3456], [-70.2437, -33.1869], [-70.2362, -33.1404], [-70.1843, -33.1021], [-70.1558, -33.1131], [-70.0936, -33.0514], [-70.0521, -33.1353], [-70.0642, -33.2058], [-70.0266, -33.2349], [-70.0387, -33.2702], [-70.0061, -33.286], [-70.0035, -33.3222], [-69.9168, -33.267], [-69.918, -33.2447], [-69.9043, -33.2729], [-69.8008, -33.2873], [-69.7698, -33.3431], [-69.7848, -33.3911], [-69.8157, -33.3911], [-69.7957, -33.4222], [-69.8186, -33.4301], [-69.8353, -33.5153], [-69.8715, -33.5394], [-69.8843, -33.6837], [-69.8642, -33.7164], [-69.9042, -33.7731], [-69.8983, -33.8475], [-69.8553, -33.8922], [-69.9059, -33.9634], [-69.8535, -33.9635], [-69.8215, -34.0155], [-69.8732, -34.133], [-69.8011, -34.1935], [-69.8024, -34.2352], [-69.8965, -34.2655], [-69.9093, -34.2906], [-69.9708, -34.2499], [-70.0041, -34.2621]]], "type": "Polygon"}, "properties": {"Comuna": "San Jos\u00e9 de Maipo", "Provincia": "Cordillera", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13203, "codregion": 13, "dis_elec": 12, "objectid": 293, "shape_leng": 483095.2028, "st_area_sh": 7223837023.36, "st_length_": 582995.722}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_2ca90c6048f48740281d5d82fae26c84.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     San José de Maipo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_2edfb12632793b65a801ea770bf20141 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1c5717d918ed50d8599056ab40090296 = $(`<div id="html_1c5717d918ed50d8599056ab40090296" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">San José de Maipo</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Cordillera</p>                         <p style="margin: 5px 0;"><b>Población:</b> 36,378 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 5 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 92,515 m² (0.0925 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_2edfb12632793b65a801ea770bf20141.setContent(html_1c5717d918ed50d8599056ab40090296);
+            
+        
+
+        geo_json_2ca90c6048f48740281d5d82fae26c84.bindPopup(popup_2edfb12632793b65a801ea770bf20141)
+        ;
+
+        
+    
+    
+            geo_json_2ca90c6048f48740281d5d82fae26c84.addTo(feature_group_3921fec137f2fc363ee9baff9647db99);
+        
+    
+            feature_group_3921fec137f2fc363ee9baff9647db99.addTo(map_18928dd2d355095890b27402a0def21b);
+        
+    
+            var feature_group_8e52a65646e30edec2ffa42746b57ecf = L.featureGroup(
+                {
+}
+            );
+        
+    
+        function geo_json_d5c2057a0103761d9626c7ff8ebfe4ba_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#B9F6CA", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_d5c2057a0103761d9626c7ff8ebfe4ba_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_d5c2057a0103761d9626c7ff8ebfe4ba_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_d5c2057a0103761d9626c7ff8ebfe4ba.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_d5c2057a0103761d9626c7ff8ebfe4ba_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_d5c2057a0103761d9626c7ff8ebfe4ba = L.geoJson(null, {
+                onEachFeature: geo_json_d5c2057a0103761d9626c7ff8ebfe4ba_onEachFeature,
+            
+                style: geo_json_d5c2057a0103761d9626c7ff8ebfe4ba_styler,
+            ...{
+}
+        });
+
+        function geo_json_d5c2057a0103761d9626c7ff8ebfe4ba_add (data) {
+            geo_json_d5c2057a0103761d9626c7ff8ebfe4ba
+                .addData(data);
+        }
+            geo_json_d5c2057a0103761d9626c7ff8ebfe4ba_add({"features": [{"geometry": {"coordinates": [[[-70.7309, -32.9261], [-70.7199, -32.953], [-70.7704, -32.9837], [-70.7357, -33.1666], [-70.8571, -33.1814], [-70.8829, -33.2288], [-70.8922, -33.1813], [-70.9933, -33.1776], [-71.0293, -33.0839], [-71.0008, -33.0501], [-71.0204, -32.981], [-70.9391, -32.9728], [-70.9066, -32.9359], [-70.8419, -32.9224], [-70.7309, -32.9261]]], "type": "Polygon"}, "properties": {"Comuna": "Tiltil", "Provincia": "Chacabuco", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13303, "codregion": 13, "dis_elec": 8, "objectid": 290, "shape_leng": 133827.2654, "st_area_sh": 932499624.704, "st_length_": 160053.5603}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_d5c2057a0103761d9626c7ff8ebfe4ba.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Tiltil
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_b262383bfb701d639d78df8098660775 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_31559c77dcab6ed5bcead26e327c8290 = $(`<div id="html_31559c77dcab6ed5bcead26e327c8290" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Tiltil</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Chacabuco</p>                         <p style="margin: 5px 0;"><b>Población:</b> 38,624 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 41 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 28,710 m² (0.0287 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_b262383bfb701d639d78df8098660775.setContent(html_31559c77dcab6ed5bcead26e327c8290);
+            
+        
+
+        geo_json_d5c2057a0103761d9626c7ff8ebfe4ba.bindPopup(popup_b262383bfb701d639d78df8098660775)
+        ;
+
+        
+    
+    
+            geo_json_d5c2057a0103761d9626c7ff8ebfe4ba.addTo(feature_group_8e52a65646e30edec2ffa42746b57ecf);
+        
+    
+            feature_group_8e52a65646e30edec2ffa42746b57ecf.addTo(map_18928dd2d355095890b27402a0def21b);
+        
+    
+            var feature_group_c35f57303489f90dada9da347b55fbda = L.featureGroup(
+                {
+}
+            );
+        
+    
+        function geo_json_31e943091e33bdf0b0f6fcc95a714718_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FFB366", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_31e943091e33bdf0b0f6fcc95a714718_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_31e943091e33bdf0b0f6fcc95a714718_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_31e943091e33bdf0b0f6fcc95a714718.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_31e943091e33bdf0b0f6fcc95a714718_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_31e943091e33bdf0b0f6fcc95a714718 = L.geoJson(null, {
+                onEachFeature: geo_json_31e943091e33bdf0b0f6fcc95a714718_onEachFeature,
+            
+                style: geo_json_31e943091e33bdf0b0f6fcc95a714718_styler,
+            ...{
+}
+        });
+
+        function geo_json_31e943091e33bdf0b0f6fcc95a714718_add (data) {
+            geo_json_31e943091e33bdf0b0f6fcc95a714718
+                .addData(data);
+        }
+            geo_json_31e943091e33bdf0b0f6fcc95a714718_add({"features": [{"geometry": {"coordinates": [[[-70.742, -33.6632], [-70.7674, -33.5719], [-70.7263, -33.5239], [-70.6853, -33.5391], [-70.7007, -33.5729], [-70.6632, -33.5851], [-70.6312, -33.6428], [-70.71, -33.6655], [-70.821, -33.7542], [-70.8024, -33.6684], [-70.742, -33.6632]]], "type": "Polygon"}, "properties": {"Comuna": "San Bernardo", "Provincia": "Maipo", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13401, "codregion": 13, "dis_elec": 14, "objectid": 297, "shape_leng": 86349.6115, "st_area_sh": 222758600.127, "st_length_": 103993.594}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_31e943091e33bdf0b0f6fcc95a714718.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     San Bernardo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_c2433e0e7bc6ab3349dec79308f75b4a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_194eb28f6d3e761ff559653b488bf65b = $(`<div id="html_194eb28f6d3e761ff559653b488bf65b" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">San Bernardo</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Maipo</p>                         <p style="margin: 5px 0;"><b>Población:</b> 602,626 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 2,705 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 883,853 m² (0.8839 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_c2433e0e7bc6ab3349dec79308f75b4a.setContent(html_194eb28f6d3e761ff559653b488bf65b);
+            
+        
+
+        geo_json_31e943091e33bdf0b0f6fcc95a714718.bindPopup(popup_c2433e0e7bc6ab3349dec79308f75b4a)
+        ;
+
+        
+    
+    
+            geo_json_31e943091e33bdf0b0f6fcc95a714718.addTo(feature_group_c35f57303489f90dada9da347b55fbda);
+        
+    
+        function geo_json_6f6fb35bf8beee6da58ce841a4c539e5_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FFB366", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_6f6fb35bf8beee6da58ce841a4c539e5_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_6f6fb35bf8beee6da58ce841a4c539e5_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_6f6fb35bf8beee6da58ce841a4c539e5.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_6f6fb35bf8beee6da58ce841a4c539e5_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_6f6fb35bf8beee6da58ce841a4c539e5 = L.geoJson(null, {
+                onEachFeature: geo_json_6f6fb35bf8beee6da58ce841a4c539e5_onEachFeature,
+            
+                style: geo_json_6f6fb35bf8beee6da58ce841a4c539e5_styler,
+            ...{
+}
+        });
+
+        function geo_json_6f6fb35bf8beee6da58ce841a4c539e5_add (data) {
+            geo_json_6f6fb35bf8beee6da58ce841a4c539e5
+                .addData(data);
+        }
+            geo_json_6f6fb35bf8beee6da58ce841a4c539e5_add({"features": [{"geometry": {"coordinates": [[[-70.6188, -33.7382], [-70.5955, -33.7815], [-70.5355, -33.8003], [-70.5246, -33.8325], [-70.4867, -33.8307], [-70.4753, -33.8607], [-70.6172, -33.9017], [-70.6539, -33.9369], [-70.7088, -33.9054], [-70.8952, -33.9886], [-70.9645, -33.9695], [-70.9802, -33.799], [-70.9225, -33.8008], [-70.9121, -33.7671], [-70.9008, -33.8031], [-70.7847, -33.8346], [-70.751, -33.7728], [-70.6906, -33.791], [-70.6881, -33.7592], [-70.6188, -33.7382]]], "type": "Polygon"}, "properties": {"Comuna": "Paine", "Provincia": "Maipo", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13404, "codregion": 13, "dis_elec": 14, "objectid": 296, "shape_leng": 164101.5639, "st_area_sh": 986612015.247, "st_length_": 196999.9085}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_6f6fb35bf8beee6da58ce841a4c539e5.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Paine
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_1b51fcac7754d90b62a5a6910a82566e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9510896609bd5b2fc050e91d6f86e127 = $(`<div id="html_9510896609bd5b2fc050e91d6f86e127" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Paine</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Maipo</p>                         <p style="margin: 5px 0;"><b>Población:</b> 145,518 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 147 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 53,386 m² (0.0534 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_1b51fcac7754d90b62a5a6910a82566e.setContent(html_9510896609bd5b2fc050e91d6f86e127);
+            
+        
+
+        geo_json_6f6fb35bf8beee6da58ce841a4c539e5.bindPopup(popup_1b51fcac7754d90b62a5a6910a82566e)
+        ;
+
+        
+    
+    
+            geo_json_6f6fb35bf8beee6da58ce841a4c539e5.addTo(feature_group_c35f57303489f90dada9da347b55fbda);
+        
+    
+            feature_group_c35f57303489f90dada9da347b55fbda.addTo(map_18928dd2d355095890b27402a0def21b);
+        
+    
+            var feature_group_0d684a3bc8d6ed1bb32d781874361050 = L.featureGroup(
+                {
+}
+            );
+        
+    
+        function geo_json_239d577303b782204e5b18da3511f68f_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#E1BEE7", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_239d577303b782204e5b18da3511f68f_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_239d577303b782204e5b18da3511f68f_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_239d577303b782204e5b18da3511f68f.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_239d577303b782204e5b18da3511f68f_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_239d577303b782204e5b18da3511f68f = L.geoJson(null, {
+                onEachFeature: geo_json_239d577303b782204e5b18da3511f68f_onEachFeature,
+            
+                style: geo_json_239d577303b782204e5b18da3511f68f_styler,
+            ...{
+}
+        });
+
+        function geo_json_239d577303b782204e5b18da3511f68f_add (data) {
+            geo_json_239d577303b782204e5b18da3511f68f
+                .addData(data);
+        }
+            geo_json_239d577303b782204e5b18da3511f68f_add({"features": [{"geometry": {"coordinates": [[[-70.9977, -33.1986], [-70.9684, -33.29], [-71.0034, -33.3291], [-70.9466, -33.3849], [-70.9549, -33.4479], [-70.9214, -33.4883], [-70.9484, -33.5606], [-71.0625, -33.4943], [-71.0591, -33.4306], [-71.1858, -33.4522], [-71.2772, -33.4023], [-71.2229, -33.3731], [-71.1955, -33.3111], [-71.2267, -33.2694], [-71.2152, -33.2343], [-71.0725, -33.2303], [-71.0569, -33.2044], [-70.9977, -33.1986]]], "type": "Polygon"}, "properties": {"Comuna": "Curacav\u00ed", "Provincia": "Melipilla", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13503, "codregion": 13, "dis_elec": 14, "objectid": 299, "shape_leng": 153945.2573, "st_area_sh": 998917700.625, "st_length_": 184598.3458}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_239d577303b782204e5b18da3511f68f.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Curacaví
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_810f5d0428a9fe4ec8d7055671a0e59b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a425459ca68c543096a2503d2d5743ea = $(`<div id="html_a425459ca68c543096a2503d2d5743ea" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Curacaví</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Melipilla</p>                         <p style="margin: 5px 0;"><b>Población:</b> 65,158 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 65 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 68,334 m² (0.0683 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_810f5d0428a9fe4ec8d7055671a0e59b.setContent(html_a425459ca68c543096a2503d2d5743ea);
+            
+        
+
+        geo_json_239d577303b782204e5b18da3511f68f.bindPopup(popup_810f5d0428a9fe4ec8d7055671a0e59b)
+        ;
+
+        
+    
+    
+            geo_json_239d577303b782204e5b18da3511f68f.addTo(feature_group_0d684a3bc8d6ed1bb32d781874361050);
+        
+    
+        function geo_json_6094242fa501e1c44d1817a6b01e055c_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#E1BEE7", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_6094242fa501e1c44d1817a6b01e055c_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_6094242fa501e1c44d1817a6b01e055c_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_6094242fa501e1c44d1817a6b01e055c.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_6094242fa501e1c44d1817a6b01e055c_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_6094242fa501e1c44d1817a6b01e055c = L.geoJson(null, {
+                onEachFeature: geo_json_6094242fa501e1c44d1817a6b01e055c_onEachFeature,
+            
+                style: geo_json_6094242fa501e1c44d1817a6b01e055c_styler,
+            ...{
+}
+        });
+
+        function geo_json_6094242fa501e1c44d1817a6b01e055c_add (data) {
+            geo_json_6094242fa501e1c44d1817a6b01e055c
+                .addData(data);
+        }
+            geo_json_6094242fa501e1c44d1817a6b01e055c_add({"features": [{"geometry": {"coordinates": [[[-71.2665, -33.41], [-71.1858, -33.4522], [-71.0591, -33.4306], [-71.0735, -33.4687], [-71.0143, -33.5418], [-71.2091, -33.5414], [-71.2512, -33.5825], [-71.3269, -33.5848], [-71.3511, -33.5285], [-71.3433, -33.4156], [-71.2665, -33.41]]], "type": "Polygon"}, "properties": {"Comuna": "Mar\u00eda Pinto", "Provincia": "Melipilla", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13504, "codregion": 13, "dis_elec": 14, "objectid": 300, "shape_leng": 109727.6439, "st_area_sh": 568671460.169, "st_length_": 131705.4413}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_6094242fa501e1c44d1817a6b01e055c.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     María Pinto
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_1d88f1e57d1ce573541be4a6bcca46ef = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_396b3da457cf5ff1d80e4c6e94817b01 = $(`<div id="html_396b3da457cf5ff1d80e4c6e94817b01" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">María Pinto</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Melipilla</p>                         <p style="margin: 5px 0;"><b>Población:</b> 27,180 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 47 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 7,614 m² (0.0076 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_1d88f1e57d1ce573541be4a6bcca46ef.setContent(html_396b3da457cf5ff1d80e4c6e94817b01);
+            
+        
+
+        geo_json_6094242fa501e1c44d1817a6b01e055c.bindPopup(popup_1d88f1e57d1ce573541be4a6bcca46ef)
+        ;
+
+        
+    
+    
+            geo_json_6094242fa501e1c44d1817a6b01e055c.addTo(feature_group_0d684a3bc8d6ed1bb32d781874361050);
+        
+    
+        function geo_json_315022cd21d1bc4861205f6016ee66b0_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#E1BEE7", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_315022cd21d1bc4861205f6016ee66b0_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_315022cd21d1bc4861205f6016ee66b0_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_315022cd21d1bc4861205f6016ee66b0.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_315022cd21d1bc4861205f6016ee66b0_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_315022cd21d1bc4861205f6016ee66b0 = L.geoJson(null, {
+                onEachFeature: geo_json_315022cd21d1bc4861205f6016ee66b0_onEachFeature,
+            
+                style: geo_json_315022cd21d1bc4861205f6016ee66b0_styler,
+            ...{
+}
+        });
+
+        function geo_json_315022cd21d1bc4861205f6016ee66b0_add (data) {
+            geo_json_315022cd21d1bc4861205f6016ee66b0
+                .addData(data);
+        }
+            geo_json_315022cd21d1bc4861205f6016ee66b0_add({"features": [{"geometry": {"coordinates": [[[-71.3915, -33.7675], [-71.359, -33.7467], [-71.4378, -33.6798], [-71.329, -33.5835], [-71.2512, -33.5825], [-71.2091, -33.5414], [-70.9492, -33.5557], [-70.9352, -33.5877], [-70.9672, -33.624], [-71.0978, -33.6341], [-71.117, -33.6825], [-71.0956, -33.7109], [-71.1205, -33.7328], [-70.9832, -33.7746], [-70.9662, -33.9178], [-71.0693, -33.8906], [-71.1143, -33.9463], [-71.2071, -33.9606], [-71.2901, -33.9087], [-71.3008, -33.8639], [-71.3804, -33.8832], [-71.4334, -33.7888], [-71.3915, -33.7675]]], "type": "Polygon"}, "properties": {"Comuna": "Melipilla", "Provincia": "Melipilla", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13501, "codregion": 13, "dis_elec": 14, "objectid": 301, "shape_leng": 232762.6787, "st_area_sh": 1958270653.88, "st_length_": 279206.2376}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_315022cd21d1bc4861205f6016ee66b0.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Melipilla
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_d0baced7493d09cf06a6d4898ea62743 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a349fb65030ce291eba0766e0c27e49b = $(`<div id="html_a349fb65030ce291eba0766e0c27e49b" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Melipilla</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Melipilla</p>                         <p style="margin: 5px 0;"><b>Población:</b> 247,254 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 126 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 232,518 m² (0.2325 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_d0baced7493d09cf06a6d4898ea62743.setContent(html_a349fb65030ce291eba0766e0c27e49b);
+            
+        
+
+        geo_json_315022cd21d1bc4861205f6016ee66b0.bindPopup(popup_d0baced7493d09cf06a6d4898ea62743)
+        ;
+
+        
+    
+    
+            geo_json_315022cd21d1bc4861205f6016ee66b0.addTo(feature_group_0d684a3bc8d6ed1bb32d781874361050);
+        
+    
+        function geo_json_73790d6f2903f31fede1582be15b1fec_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#E1BEE7", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_73790d6f2903f31fede1582be15b1fec_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_73790d6f2903f31fede1582be15b1fec_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_73790d6f2903f31fede1582be15b1fec.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_73790d6f2903f31fede1582be15b1fec_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_73790d6f2903f31fede1582be15b1fec = L.geoJson(null, {
+                onEachFeature: geo_json_73790d6f2903f31fede1582be15b1fec_onEachFeature,
+            
+                style: geo_json_73790d6f2903f31fede1582be15b1fec_styler,
+            ...{
+}
+        });
+
+        function geo_json_73790d6f2903f31fede1582be15b1fec_add (data) {
+            geo_json_73790d6f2903f31fede1582be15b1fec
+                .addData(data);
+        }
+            geo_json_73790d6f2903f31fede1582be15b1fec_add({"features": [{"geometry": {"coordinates": [[[-71.5631, -33.9875], [-71.5873, -34.034], [-71.7144, -33.9475], [-71.5563, -33.8722], [-71.5407, -33.7639], [-71.423, -33.794], [-71.3714, -33.8907], [-71.3004, -33.8641], [-71.2901, -33.9087], [-71.207, -33.9615], [-71.231, -34.0123], [-71.3902, -34.0759], [-71.4484, -34.0144], [-71.5631, -33.9875]]], "type": "Polygon"}, "properties": {"Comuna": "San Pedro", "Provincia": "Melipilla", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13505, "codregion": 13, "dis_elec": 14, "objectid": 302, "shape_leng": 162648.3119, "st_area_sh": 1145315682.11, "st_length_": 195465.2511}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_73790d6f2903f31fede1582be15b1fec.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     San Pedro
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_214c93d06fdca5e9441ccfdfa35726e4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0e6090acc0344f9d8dd831400dba534d = $(`<div id="html_0e6090acc0344f9d8dd831400dba534d" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">San Pedro</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Melipilla</p>                         <p style="margin: 5px 0;"><b>Población:</b> 19,452 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 16 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 0 m² (0.0000 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_214c93d06fdca5e9441ccfdfa35726e4.setContent(html_0e6090acc0344f9d8dd831400dba534d);
+            
+        
+
+        geo_json_73790d6f2903f31fede1582be15b1fec.bindPopup(popup_214c93d06fdca5e9441ccfdfa35726e4)
+        ;
+
+        
+    
+    
+            geo_json_73790d6f2903f31fede1582be15b1fec.addTo(feature_group_0d684a3bc8d6ed1bb32d781874361050);
+        
+    
+        function geo_json_b61872fcf189bf43d178d3ab837f1428_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#E1BEE7", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_b61872fcf189bf43d178d3ab837f1428_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_b61872fcf189bf43d178d3ab837f1428_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_b61872fcf189bf43d178d3ab837f1428.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_b61872fcf189bf43d178d3ab837f1428_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_b61872fcf189bf43d178d3ab837f1428 = L.geoJson(null, {
+                onEachFeature: geo_json_b61872fcf189bf43d178d3ab837f1428_onEachFeature,
+            
+                style: geo_json_b61872fcf189bf43d178d3ab837f1428_styler,
+            ...{
+}
+        });
+
+        function geo_json_b61872fcf189bf43d178d3ab837f1428_add (data) {
+            geo_json_b61872fcf189bf43d178d3ab837f1428
+                .addData(data);
+        }
+            geo_json_b61872fcf189bf43d178d3ab837f1428_add({"features": [{"geometry": {"coordinates": [[[-71.0079, -33.8923], [-70.9604, -33.9226], [-70.9628, -33.9706], [-70.8952, -33.9886], [-70.8249, -33.9534], [-70.7918, -33.993], [-70.8076, -34.0253], [-70.8888, -34.0386], [-70.893, -34.0758], [-70.9412, -34.1052], [-70.9142, -34.1447], [-70.9687, -34.172], [-71.0721, -34.1841], [-71.1848, -34.1584], [-71.3005, -34.0299], [-71.231, -34.0123], [-71.2071, -33.9606], [-71.1094, -33.9434], [-71.0849, -33.894], [-71.0079, -33.8923]]], "type": "Polygon"}, "properties": {"Comuna": "Alhu\u00e9", "Provincia": "Melipilla", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13502, "codregion": 13, "dis_elec": 14, "objectid": 298, "shape_leng": 154307.5943, "st_area_sh": 1232469712.21, "st_length_": 186225.8489}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_b61872fcf189bf43d178d3ab837f1428.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Alhué
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_a88e458a2713fd431c8c8b10f884a638 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_86f3265f74ea8bf65506742fbcebcddb = $(`<div id="html_86f3265f74ea8bf65506742fbcebcddb" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Alhué</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Melipilla</p>                         <p style="margin: 5px 0;"><b>Población:</b> 12,888 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 10 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 14,174 m² (0.0142 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_a88e458a2713fd431c8c8b10f884a638.setContent(html_86f3265f74ea8bf65506742fbcebcddb);
+            
+        
+
+        geo_json_b61872fcf189bf43d178d3ab837f1428.bindPopup(popup_a88e458a2713fd431c8c8b10f884a638)
+        ;
+
+        
+    
+    
+            geo_json_b61872fcf189bf43d178d3ab837f1428.addTo(feature_group_0d684a3bc8d6ed1bb32d781874361050);
+        
+    
+            feature_group_0d684a3bc8d6ed1bb32d781874361050.addTo(map_18928dd2d355095890b27402a0def21b);
+        
+    
+            var feature_group_0553831eaedb3e74701ae5dc97e74621 = L.featureGroup(
+                {
+}
+            );
+        
+    
+        function geo_json_e60c46883c8473f693963bb65fb77e95_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FFF59D", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_e60c46883c8473f693963bb65fb77e95_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_e60c46883c8473f693963bb65fb77e95_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_e60c46883c8473f693963bb65fb77e95.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_e60c46883c8473f693963bb65fb77e95_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_e60c46883c8473f693963bb65fb77e95 = L.geoJson(null, {
+                onEachFeature: geo_json_e60c46883c8473f693963bb65fb77e95_onEachFeature,
+            
+                style: geo_json_e60c46883c8473f693963bb65fb77e95_styler,
+            ...{
+}
+        });
+
+        function geo_json_e60c46883c8473f693963bb65fb77e95_add (data) {
+            geo_json_e60c46883c8473f693963bb65fb77e95
+                .addData(data);
+        }
+            geo_json_e60c46883c8473f693963bb65fb77e95_add({"features": [{"geometry": {"coordinates": [[[-70.9913, -33.6147], [-70.9366, -33.663], [-71.0313, -33.7196], [-71.1026, -33.7054], [-71.0978, -33.6341], [-71.036, -33.6429], [-70.9913, -33.6147]]], "type": "Polygon"}, "properties": {"Comuna": "El Monte", "Provincia": "Talagante", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13602, "codregion": 13, "dis_elec": 14, "objectid": 335, "shape_leng": 51238.6111, "st_area_sh": 166986446.678, "st_length_": 61626.6024}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_e60c46883c8473f693963bb65fb77e95.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     El Monte
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_784c92b3c7635ce500ab6fa88ce58460 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6e8daae1afe6c1ebb8d7ac37b3d567d4 = $(`<div id="html_6e8daae1afe6c1ebb8d7ac37b3d567d4" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">El Monte</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Talagante</p>                         <p style="margin: 5px 0;"><b>Población:</b> 71,846 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 430 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 7,237 m² (0.0072 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_784c92b3c7635ce500ab6fa88ce58460.setContent(html_6e8daae1afe6c1ebb8d7ac37b3d567d4);
+            
+        
+
+        geo_json_e60c46883c8473f693963bb65fb77e95.bindPopup(popup_784c92b3c7635ce500ab6fa88ce58460)
+        ;
+
+        
+    
+    
+            geo_json_e60c46883c8473f693963bb65fb77e95.addTo(feature_group_0553831eaedb3e74701ae5dc97e74621);
+        
+    
+        function geo_json_41fb451639343c102a993e9471b17175_styler(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"color": "white", "fillColor": "#FFF59D", "fillOpacity": 0.7, "weight": 1};
+            }
+        }
+        function geo_json_41fb451639343c102a993e9471b17175_highlighter(feature) {
+            switch(feature.properties.objectid) {
+                default:
+                    return {"fillOpacity": 0.9, "weight": 2};
+            }
+        }
+
+        function geo_json_41fb451639343c102a993e9471b17175_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_41fb451639343c102a993e9471b17175.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_41fb451639343c102a993e9471b17175_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_41fb451639343c102a993e9471b17175 = L.geoJson(null, {
+                onEachFeature: geo_json_41fb451639343c102a993e9471b17175_onEachFeature,
+            
+                style: geo_json_41fb451639343c102a993e9471b17175_styler,
+            ...{
+}
+        });
+
+        function geo_json_41fb451639343c102a993e9471b17175_add (data) {
+            geo_json_41fb451639343c102a993e9471b17175
+                .addData(data);
+        }
+            geo_json_41fb451639343c102a993e9471b17175_add({"features": [{"geometry": {"coordinates": [[[-70.8494, -33.5768], [-70.9353, -33.5881], [-70.9484, -33.5606], [-70.9197, -33.5112], [-70.8517, -33.5378], [-70.8078, -33.5283], [-70.7786, -33.5691], [-70.819, -33.5986], [-70.8494, -33.5768]]], "type": "Polygon"}, "properties": {"Comuna": "Padre Hurtado", "Provincia": "Talagante", "Region": "Regi\u00f3n Metropolitana de Santiago", "cir_sena": 7, "cod_comuna": 13604, "codregion": 13, "dis_elec": 14, "objectid": 337, "shape_leng": 50719.9475, "st_area_sh": 116364344.646, "st_length_": 60916.5432}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+            geo_json_41fb451639343c102a993e9471b17175.bindTooltip(
+                `<div style="background-color: white; border: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+                     Padre Hurtado
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+        var popup_b7efdc46f3e2570270d9f1bee9c02d1c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5c402323ab27a65ec63315cdde9e2264 = $(`<div id="html_5c402323ab27a65ec63315cdde9e2264" style="width: 100.0%; height: 100.0%;">                 <div class="custom-popup" style="padding: 15px; min-width: 200px;">                     <h4 style="margin:0 0 10px 0; color:#333;">Padre Hurtado</h4>                     <div style="color: #666;">                         <p style="margin: 5px 0;"><b>Provincia:</b> Talagante</p>                         <p style="margin: 5px 0;"><b>Población:</b> 126,500 habitantes</p>                         <p style="margin: 5px 0;"><b>Densidad:</b> 1,087 hab/km²</p>                         <p style="margin: 5px 0;"><b>Áreas Verdes:</b> 31,271 m² (0.0313 km²)</p>                     </div>                 </div>                 </div>`)[0];
+                popup_b7efdc46f3e2570270d9f1bee9c02d1c.setContent(html_5c402323ab27a65ec63315cdde9e2264);
+            
+        
+
+        geo_json_41fb451639343c102a993e9471b17175.bindPopup(popup_b7efdc46f3e2570270d9f1bee9c02d1c)
+        ;
+
+        
+    
+    
+            geo_json_41fb451639343c102a993e9471b17175.addTo(feature_group_0553831eaedb3e74701ae5dc97e74621);
+        
+    
+            feature_group_0553831eaedb3e74701ae5dc97e74621.addTo(map_18928dd2d355095890b27402a0def21b);
+        
+    
+            var layer_control_79b2ca7078dadccc99397de837682662_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_059f11ae9234070857beee51d5dc8037,
+                },
+                overlays :  {
+                    "Santiago" : feature_group_ac4b854f19df8186899202ad0c997a46,
+                    "Cordillera" : feature_group_3921fec137f2fc363ee9baff9647db99,
+                    "Chacabuco" : feature_group_8e52a65646e30edec2ffa42746b57ecf,
+                    "Maipo" : feature_group_c35f57303489f90dada9da347b55fbda,
+                    "Melipilla" : feature_group_0d684a3bc8d6ed1bb32d781874361050,
+                    "Talagante" : feature_group_0553831eaedb3e74701ae5dc97e74621,
+                },
+            };
+            let layer_control_79b2ca7078dadccc99397de837682662 = L.control.layers(
+                layer_control_79b2ca7078dadccc99397de837682662_layers.base_layers,
+                layer_control_79b2ca7078dadccc99397de837682662_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_18928dd2d355095890b27402a0def21b);
+
+        
+</script>
+</html>

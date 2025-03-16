@@ -5,10 +5,10 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import os
-# from sqlalchemy import create_engine
+from sqlalchemy import create_engine
 
-# # Crear conexión usando SQLAlchemy
-# engine = create_engine('mariadb+mariadbconnector://testfiut:utem1234@localhost/mysql')
+# Crear conexión usando SQLAlchemy
+engine = create_engine('mariadb+mariadbconnector://testfiut:utem1234@localhost/mysql')
 
 # Configuración de la página
 st.set_page_config(
@@ -17,7 +17,13 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
-         'About': "# PROYECTO FIU UTEM \n Dashboard creado por el equipo de integración de datos \n - Diego Santibañez, dsantibanezo@utem.cl\n - Esteban Gomez, egomez@utem.cl\n - Hugo Osses, hosses@sutem.cl"
+         'About': """
+         # PROYECTO FIU UTEM 
+         Dashboard creado por el equipo de integración de datos 
+         - Diego Santibañez, dsantibanezo@utem.cl
+         - Esteban Gomez, egomez@utem.cl
+         - Hugo Osses, hosses@utem.cl
+         """
         #'About': "# PROYECTO FIU UTEM"
     }
 )
@@ -708,12 +714,12 @@ def mostrar_tabla_comunas():
     """
     st.subheader("Comunas del proyecto - Región Metropolitana")
 
-    querycomunas="""select cpt.nombre_comuna, cpt.nombre_provincia, cr.nombre as nombre_region from fiut.comunas_provincias_territorio cpt
+    querycomunas="""select cpt.nombre_comuna as 'Nombre comuna', cpt.nombre_provincia as 'Nombre provincia', cr.nombre as 'Nombre region' from fiut.comunas_provincias_territorio cpt
     join fiut.chile_regiones cr on cr.nombre='Metropolitana de Santiago';"""
     
     # Cargar el dataframe
-    # df_comunas = pd.read_sql(querycomunas, engine)
-    df_comunas = pd.read_csv('data/Comunas.csv')
+    df_comunas = pd.read_sql(querycomunas, engine)
+    # df_comunas = pd.read_csv('data/Comunas.csv')
 
     
     if not df_comunas.empty:
@@ -1141,7 +1147,7 @@ def main():
                 return None
         
         # Ruta a tu archivo HTML (ajusta según donde esté guardado)
-        ruta_mapa = "mapa_rm_final.html"
+        ruta_mapa = "mapas_html/mapa_rm_final.html"
         
         # Cargar y mostrar el mapa
         html_mapa = cargar_html_mapa(ruta_mapa)
@@ -1186,7 +1192,7 @@ def main():
                 return None
         
         # Ruta a tu archivo HTML (ajusta según donde esté guardado)
-        ruta_mapa = "mapa_sedes_utem.html"
+        ruta_mapa = "mapas_html/mapa_sedes_utem.html"
         
         # Cargar y mostrar el mapa
         html_mapa = cargar_html_mapa(ruta_mapa)
