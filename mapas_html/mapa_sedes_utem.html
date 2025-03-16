@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style>
+        .leaflet-container {
+            background-color: #f8f9fa;
+        }
+        .leaflet-popup-content-wrapper {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            border-radius: 8px;
+        }
+        .leaflet-popup-content {
+            margin: 0;
+        }
+        .leaflet-popup-close-button {
+            color: #666;
+        }
+        /* Eliminar recuadro azul */
+        .leaflet-interactive {
+            outline: none !important;
+        }
+        /* Mejorar efecto hover */
+        path {
+            transition: all 0.3s ease;
+            stroke: white !important;
+            stroke-width: 1px !important;
+            filter: drop-shadow(0 0 0 rgba(0,0,0,0));
+        }
+        path:hover {
+            stroke-width: 2px !important;
+            filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+            transform: translateY(-2px);
+        }
+        /* Estilo para popups */
+        .custom-popup {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        /* Estilos para marcadores UTEM */
+        .utem-marker {
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            display: block;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .marker-campus { background-color: #003876; }
+        .marker-facultad { background-color: #e63946; }
+        .marker-escuela { background-color: #2a9d8f; }
+        .marker-departamento { background-color: #5e60ce; }
+        .marker-centro { background-color: #f4a261; }
+        .marker-servicio { background-color: #06d6a0; }
+        .marker-administrativo { background-color: #6a4c93; }
+        .marker-administracion { background-color: #ffc107; }
+        .marker-edificio { background-color: #4caf50; }
+        /* Contenedor de leyenda para UTEM */
+        .utem-legend {
+            position: fixed; 
+            top: 20px; 
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            z-index: 1000;
+        }
+        .utem-legend-item {
+            display: flex;
+            align-items: center;
+            margin: 3px 0;
+            cursor: pointer;
+        }
+        .utem-legend-item:hover {
+            background-color: #f8f9fa;
+        }
+        .utem-legend-color {
+            width: 12px;
+            height: 12px;
+            margin-right: 8px;
+            border: 1px solid rgba(255,255,255,0.8);
+            border-radius: 50%;
+        }
+        .marker-group-hidden {
+            display: none !important;
+        }
+    </style>
+    
+    <script>
+        L_NO_TOUCH = false;
+        L_DISABLE_3D = false;
+    </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        #map_utem_instalaciones {
+            position: relative;
+            width: 100.0%;
+            height: 100.0%;
+            left: 0.0%;
+            top: 0.0%;
+        }
+        .leaflet-container { font-size: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="utem-legend">
+        <div style="font-weight: bold; margin-bottom: 5px;">Instalaciones UTEM</div>
+        <div style="font-size: 10px; color: #666; margin-bottom: 8px;">
+            Universidad Tecnológica Metropolitana
+        </div>
+
+        <div class="utem-legend-item">
+            <input type="checkbox" id="filter-campus" checked style="margin-right: 5px; cursor: pointer;">
+            <div class="utem-legend-color" style="background: #003876;"></div>
+            <span style="color: #333;">Campus</span>
+        </div>
+    
+        <div class="utem-legend-item">
+            <input type="checkbox" id="filter-facultad" checked style="margin-right: 5px; cursor: pointer;">
+            <div class="utem-legend-color" style="background: #e63946;"></div>
+            <span style="color: #333;">Facultad</span>
+        </div>
+    
+        <div class="utem-legend-item">
+            <input type="checkbox" id="filter-administracion" checked style="margin-right: 5px; cursor: pointer;">
+            <div class="utem-legend-color" style="background: #ffc107;"></div>
+            <span style="color: #333;">Administración</span>
+        </div>
+        
+        <div class="utem-legend-item">
+            <input type="checkbox" id="filter-edificio" checked style="margin-right: 5px; cursor: pointer;">
+            <div class="utem-legend-color" style="background: #4caf50;"></div>
+            <span style="color: #333;">Edificio</span>
+        </div>
+        
+        <div style="margin-top: 10px; display: flex; justify-content: space-between;">
+            <button id="btn-mostrar-todos" style="font-size: 11px; cursor: pointer; padding: 3px 8px; background: #003876; color: white; border: none; border-radius: 3px;">Mostrar todos</button>
+            <button id="btn-ocultar-todos" style="font-size: 11px; cursor: pointer; padding: 3px 8px; background: #e63946; color: white; border: none; border-radius: 3px;">Ocultar todos</button>
+        </div>
+    </div>
+
+    <div class="folium-map" id="map_utem_instalaciones" ></div>
+
+<script>
+    var map_utem_instalaciones = L.map(
+        "map_utem_instalaciones",
+        {
+            center: [-33.45, -70.65],
+            crs: L.CRS.EPSG3857,
+            zoom: 12,
+            zoomControl: true,
+            preferCanvas: false,
+            scrollWheelZoom: true,
+            dragging: true
+        }
+    );
+
+    var tile_layer_light = L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+        {
+            minZoom: 0,
+            maxZoom: 20,
+            maxNativeZoom: 20,
+            noWrap: false,
+            attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors &copy; <a href=\"https://carto.com/attributions\">CARTO</a>",
+            subdomains: "abcd",
+            detectRetina: false,
+            tms: false,
+            opacity: 1
+        }
+    );
+
+    tile_layer_light.addTo(map_utem_instalaciones);
+
+    var feature_group_utem_instalaciones = L.featureGroup(
+        {}
+    );
+
+    feature_group_utem_instalaciones.addTo(map_utem_instalaciones);
+
+    // Datos de las instalaciones UTEM (basados en URLs proporcionadas)
+    var instalaciones_utem = [
+        // Campus
+        {
+            nombre: "Casa Central",
+            direccion: "Dieciocho 161, Santiago",
+            telefono: "(+56 2) 2787 7500",
+            tipo: "Administración",
+            coordenadas: [-33.4521, -70.6611],
+            descripcion: "Edificio principal que alberga las oficinas administrativas centrales de la universidad."
+        },
+        {
+            nombre: "Campus Área Central",
+            direccion: "Dieciocho 390, Santiago",
+            telefono: "(+56 2) 2787 7500",
+            tipo: "Campus",
+            coordenadas: [-33.4546, -70.6611],
+            descripcion: "Campus donde se ubica la Facultad de Ciencias de la Construcción y Ordenamiento Territorial."
+        },
+        {
+            nombre: "Campus Macul",
+            direccion: "José Pedro Alessandri 1242, Ñuñoa",
+            telefono: "(+56 2) 2787 7500",
+            tipo: "Campus",
+            coordenadas: [-33.4656, -70.5981],
+            descripcion: "Campus principal donde se concentran varias facultades y departamentos académicos."
+        },
+        {
+            nombre: "Campus Providencia",
+            direccion: "Dr. Hernán Alessandri 644, Providencia",
+            telefono: "(+56 2) 2787 7500",
+            tipo: "Campus",
+            coordenadas: [-33.4304, -70.6261],
+            descripcion: "Campus donde se encuentra la Facultad de Administración y Economía."
+        },
+
+        // Facultades
+        {
+            nombre: "Facultad de Ingeniería",
+            direccion: "José Pedro Alessandri 1242, Ñuñoa",
+            telefono: "(+56 2) 2787 7500",
+            tipo: "Facultad",
+            coordenadas: [-33.4656, -70.5981],
+            descripcion: "Facultad que alberga las carreras de ingeniería de la universidad."
+        },
+        {
+            nombre: "Facultad de Administración y Economía",
+            direccion: "Dr. Hernán Alessandri 644, Providencia",
+            telefono: "(+56 2) 2787 7500",
+            tipo: "Facultad",
+            coordenadas: [-33.4304, -70.6261],
+            descripcion: "Facultad dedicada a la formación en ciencias económicas y administrativas."
+        },
+        {
+            nombre: "Facultad de Ciencias de la Construcción y Ordenamiento Territorial",
+            direccion: "Dieciocho 390, Santiago",
+            telefono: "(+56 2) 2787 7500",
+            tipo: "Facultad",
+            coordenadas: [-33.4546, -70.6611],
+            descripcion: "Facultad enfocada en arquitectura, construcción y planificación territorial."
+        },
+        {
+            nombre: "Facultad de Ciencias Naturales, Matemática y Medio Ambiente",
+            direccion: "José Pedro Alessandri 1242, Ñuñoa",
+            telefono: "(+56 2) 2787 7500",
+            tipo: "Facultad",
+            coordenadas: [-33.4656, -70.5981],
+            descripcion: "Facultad orientada a las ciencias básicas y estudios ambientales."
+        },
+        {
+            nombre: "Facultad de Humanidades y Tecnologías de la Comunicación Social",
+            direccion: "José Pedro Alessandri 1242, Ñuñoa",
+            telefono: "(+56 2) 2787 7500",
+            tipo: "Facultad",
+            coordenadas: [-33.4656, -70.5981],
+            descripcion: "Facultad dedicada a la formación en humanidades y comunicación."
+        },
+        
+        // Edificio de Ciencia y Tecnología (añadido específicamente)
+        {
+            nombre: "Edificio de Ciencia y Tecnología",
+            direccion: "José Pedro Alessandri 1242, Ñuñoa",
+            telefono: "(+56 2) 2787 7500",
+            tipo: "Edificio",
+            coordenadas: [-33.4656, -70.5981],
+            descripcion: "Edificio que alberga laboratorios y salas dedicadas a la enseñanza e investigación en ciencias y tecnología. Ubicado en el Campus Macul."
+        }
+    ];
+
+    // Función para obtener la clase CSS según el tipo de instalación
+    function getMarkerClass(tipo) {
+        return "marker-" + tipo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+    
+    // Diccionario para almacenar los marcadores por tipo
+    var marcadoresPorTipo = {};
+    
+    // Inicializar grupos de marcadores vacíos para cada tipo
+    var tiposInstalaciones = ["Campus", "Facultad", "Administración", "Edificio"];
+    tiposInstalaciones.forEach(function(tipo) {
+        marcadoresPorTipo[tipo] = [];
+    });
+
+    // Función para crear y agregar marcadores al mapa
+    function addMarkersToMap() {
+        // Crear marcadores para cada instalación
+        instalaciones_utem.forEach(function(instalacion) {
+            // Crear el icono personalizado
+            var icon = L.divIcon({
+                className: 'utem-marker ' + getMarkerClass(instalacion.tipo),
+                iconSize: [14, 14],
+                iconAnchor: [7, 7]
+            });
+            
+            // Crear el marcador
+            var marker = L.marker(instalacion.coordenadas, {
+                icon: icon,
+                title: instalacion.nombre
+            }).addTo(feature_group_utem_instalaciones);
+            
+            // Crear contenido del popup
+            var popupContent = 
+                '<div class="custom-popup" style="padding: 15px; min-width: 200px;">' +
+                '<h4 style="margin:0 0 10px 0; color:#333;">' + instalacion.nombre + '</h4>' +
+                '<div style="color: #666;">' +
+                '<p style="margin: 5px 0;"><b>Tipo:</b> ' + instalacion.tipo + '</p>' +
+                '<p style="margin: 5px 0;"><b>Dirección:</b> ' + instalacion.direccion + '</p>' +
+                '<p style="margin: 5px 0;"><b>Teléfono:</b> ' + instalacion.telefono + '</p>' +
+                '<p style="margin: 10px 0 5px 0;">' + instalacion.descripcion + '</p>' +
+                '</div>' +
+                '</div>';
+            
+            // Asociar popup al marcador
+            var popup = L.popup({maxWidth: 300})
+                .setContent(popupContent);
+            
+            marker.bindPopup(popup);
+            
+            // Guardar referencia al marcador según su tipo
+            marcadoresPorTipo[instalacion.tipo].push(marker);
+            
+            // Agregar data-tipo al elemento DOM del marcador para filtrado
+            marker._icon && (marker._icon.dataset.tipo = instalacion.tipo);
+        });
+        
+        // Ajustar el mapa para mostrar todos los marcadores
+        var bounds = L.latLngBounds(instalaciones_utem.map(i => i.coordenadas));
+        map_utem_instalaciones.fitBounds(bounds, {padding: [50, 50]});
+        
+        // Agregar eventos de filtrado
+        setupFilterEvents();
+    }
+    
+    // Función para configurar los eventos de filtrado
+    function setupFilterEvents() {
+        // Manejar cambios en los checkboxes de filtro
+        tiposInstalaciones.forEach(function(tipo) {
+            var checkbox = document.getElementById('filter-' + tipo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+            if (checkbox) {
+                checkbox.addEventListener('change', function() {
+                    toggleMarkerVisibility(tipo, this.checked);
+                });
+            }
+        });
+        
+        // Botón para mostrar todos
+        document.getElementById('btn-mostrar-todos').addEventListener('click', function() {
+            tiposInstalaciones.forEach(function(tipo) {
+                var checkbox = document.getElementById('filter-' + tipo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+                toggleMarkerVisibility(tipo, true);
+            });
+        });
+        
+        // Botón para ocultar todos
+        document.getElementById('btn-ocultar-todos').addEventListener('click', function() {
+            tiposInstalaciones.forEach(function(tipo) {
+                var checkbox = document.getElementById('filter-' + tipo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+                if (checkbox) {
+                    checkbox.checked = false;
+                }
+                toggleMarkerVisibility(tipo, false);
+            });
+        });
+    }
+    
+    // Función para mostrar/ocultar marcadores por tipo
+    function toggleMarkerVisibility(tipo, mostrar) {
+        if (marcadoresPorTipo[tipo]) {
+            marcadoresPorTipo[tipo].forEach(function(marker) {
+                if (mostrar) {
+                    // Mostrar marcador
+                    if (marker._icon) {
+                        marker._icon.style.display = '';
+                    }
+                    feature_group_utem_instalaciones.addLayer(marker);
+                } else {
+                    // Ocultar marcador
+                    if (marker._icon) {
+                        marker._icon.style.display = 'none';
+                    }
+                    feature_group_utem_instalaciones.removeLayer(marker);
+                }
+            });
+        }
+    }
+    
+    // Llamar a la función para añadir los marcadores
+    addMarkersToMap();
+</script>
+</body>
+</html>
