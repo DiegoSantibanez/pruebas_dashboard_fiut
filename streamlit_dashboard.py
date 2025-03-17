@@ -729,33 +729,6 @@ def mostrar_tabla_comunas():
             use_container_width=True,
             hide_index=True
         )
-        
-        # # Información adicional
-        # col1, col2 = st.columns(2)
-        
-        # with col1:
-        #     # Contar comunas por provincia
-        #     comunas_por_provincia = df_comunas['Provincia'].value_counts().reset_index()
-        #     comunas_por_provincia.columns = ['Provincia', 'Cantidad de Comunas']
-            
-        #     st.write("Distribución por Provincia:")
-        #     st.dataframe(
-        #         comunas_por_provincia,
-        #         use_container_width=True,
-        #         hide_index=True
-        #     )
-        
-        # with col2:
-        #     st.markdown("""
-        #     <div style="background-color:#f0f2f6; padding:15px; border-radius:10px;">
-        #     <h4>Acerca de las comunas prioritarias</h4>
-        #     <p>Estas 22 comunas han sido identificadas como prioritarias para el proyecto CINET, 
-        #     enfocado en el desarrollo de centros interdisciplinarios en nuevas economías y 
-        #     tecnologías.</p>
-        #     <p>La selección abarca comunas de 5 provincias diferentes de la Región Metropolitana, 
-        #     con especial énfasis en comunas pertenecientes a la provincia de Santiago.</p>
-        #     </div>
-        #     """, unsafe_allow_html=True)
     else:
         st.warning("No se pudo cargar la información de comunas.")
 
@@ -956,9 +929,12 @@ def main():
             """, unsafe_allow_html=True)
             
             # Cargar el CSV de nombres de dimensiones
-            nombres_dimensiones = pd.read_csv("data/nombres_dimensiones.csv")
+
+            nombres_dimensiones = pd.read_sql("select dp.id_dim, dp.nombre_completo_dim as 'Nombre dimensión' from fiut.dimensiones_proyecto dp;", engine)
+
+            # nombres_dimensiones = pd.read_csv("data/nombres_dimensiones.csv")
             # Crear un diccionario para mapear id a nombre
-            dict_dimensiones = dict(zip(nombres_dimensiones['id_dim'], nombres_dimensiones['nombre_dim']))
+            dict_dimensiones = dict(zip(nombres_dimensiones['id_dim'], nombres_dimensiones['Nombre dimensión']))
 
             # Mostrar estadísticas por dimensión
             st.subheader("Estadísticas por Dimensión")
@@ -1003,7 +979,7 @@ def main():
                 
                 # Mostrar el DataFrame sin el índice y sin la columna de número
                 st.dataframe(
-                    dim_df[['Dimensión', 'Nombre Dimensión', 'Total Archivos', 'Porcentaje']], 
+                    dim_df[['Nombre Dimensión', 'Total Archivos', 'Porcentaje']], 
                     use_container_width=True,
                     hide_index=True
                 )
