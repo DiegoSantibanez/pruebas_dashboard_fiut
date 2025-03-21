@@ -523,25 +523,33 @@ def crear_grafico_estados_interactivo(df):
         )
 
 
-# Cargar datos de indicadores
 @st.cache_data
-def cargar_indicadores(ruta='data/porcentajes avances.csv'):
-    try:
-        df = pd.read_csv(ruta, sep=';')
-        # Renombrar columnas para mayor claridad
-        df = df.rename(columns={
-            'ID': 'ID',
-            'Dimension': 'Dimension',
-            'Estado': 'Estado',
-            'Origen': 'Origen'
-        })
-        return df
-    except FileNotFoundError:
-        st.error(f"Archivo {ruta} no encontrado.")
-        return pd.DataFrame()
-
-# Usar la función en tu aplicación
-df_indicadores = cargar_indicadores()
+def cargar_indicadores_db():
+    try:        
+        # Primero obtener la fecha más reciente de actualización
+        query_fecha = "SELECT MAX(fecha_actualizacion) as ultima_fecha FROM fiut.avance_indicadores"
+        df_fecha = pd.read_sql(query_fecha, engine)
+        ultima_fecha = df_fecha['ultima_fecha'].iloc[0]
+        
+        # Obtener los datos con la fecha más reciente
+        query = f"""
+        SELECT 
+            ai.id_indicador AS 'ID', 
+            ai.dimension AS 'Dimension', 
+            ai.estado AS 'Estado', 
+            ai.origen AS 'Origen' 
+        FROM 
+            fiut.avance_indicadores ai 
+        WHERE 
+            ai.fecha_actualizacion = {ultima_fecha}
+        """
+        
+        df = pd.read_sql(query, engine)
+        return df, ultima_fecha
+            
+    except Exception as e:
+        st.error(f"Error al conectar a la base de datos: {e}")
+        return pd.DataFrame(), None
 
 
 # Función para crear y mostrar el treemap de dimensiones e indicadores
@@ -772,8 +780,14 @@ def main():
     st.markdown(f"### Levantamiento de un diagnóstico integral del territorio local y de las capacidades institucionales UTEM para la creación de un Centro Interdisciplinario en nuevas economías y tecnologías, orientado al desarrollo de localidades prioritarias de la Región Metropolitana. (CINET)")
     # Cargar datos de indicadores para las métricas de completitud
     # Cargar datos de indicadores para las métricas de completitud
-    df_indicadores = cargar_indicadores()
-
+# Cargar datos desde la base de datos
+    df_indicadores, ultima_fecha = cargar_indicadores_db()
+    
+    # Mostrar la fecha de actualización de los datos
+    if ultima_fecha:
+        fecha_str = str(ultima_fecha)
+        st.info(f"Datos actualizados al: {fecha_str[:4]}-{fecha_str[4:6]}-{fecha_str[6:]}")
+    
     # Calcular porcentajes de completitud y conteos por estado
     if not df_indicadores.empty:
         # Calcular para Institucional
@@ -782,9 +796,9 @@ def main():
         completados_inst = len(df_inst[df_inst['Estado'] == 'LISTO'])
         en_proceso_inst = len(df_inst[df_inst['Estado'] == 'EN PROCESO'])
         pendientes_inst = len(df_inst[df_inst['Estado'] == 'PENDIENTE'])
-        porc_completitud_inst = completados_inst / total_inst * 100
-        porc_proceso_inst = en_proceso_inst / total_inst * 100
-        porc_pendientes_inst = pendientes_inst / total_inst * 100
+        porc_completitud_inst = completados_inst / total_inst * 100 if total_inst > 0 else 0
+        porc_proceso_inst = en_proceso_inst / total_inst * 100 if total_inst > 0 else 0
+        porc_pendientes_inst = pendientes_inst / total_inst * 100 if total_inst > 0 else 0
         
         # Calcular para Territorial
         df_terr = df_indicadores[df_indicadores['Origen'] == 'Territorial']
@@ -792,24 +806,23 @@ def main():
         completados_terr = len(df_terr[df_terr['Estado'] == 'LISTO'])
         en_proceso_terr = len(df_terr[df_terr['Estado'] == 'EN PROCESO'])
         pendientes_terr = len(df_terr[df_terr['Estado'] == 'PENDIENTE'])
-        porc_completitud_terr = completados_terr / total_terr * 100
-        porc_proceso_terr = en_proceso_terr / total_terr * 100
-        porc_pendientes_terr = pendientes_terr / total_terr * 100
+        porc_completitud_terr = completados_terr / total_terr * 100 if total_terr > 0 else 0
+        porc_proceso_terr = en_proceso_terr / total_terr * 100 if total_terr > 0 else 0
+        porc_pendientes_terr = pendientes_terr / total_terr * 100 if total_terr > 0 else 0
         
         # Calcular global
         total_global = len(df_indicadores)
         completados_global = len(df_indicadores[df_indicadores['Estado'] == 'LISTO'])
         en_proceso_global = len(df_indicadores[df_indicadores['Estado'] == 'EN PROCESO'])
         pendientes_global = len(df_indicadores[df_indicadores['Estado'] == 'PENDIENTE'])
-        porc_completitud_global = completados_global / total_global * 100
-        porc_proceso_global = en_proceso_global / total_global * 100
-        porc_pendientes_global = pendientes_global / total_global * 100
+        porc_completitud_global = completados_global / total_global * 100 if total_global > 0 else 0
+        porc_proceso_global = en_proceso_global / total_global * 100 if total_global > 0 else 0
+        porc_pendientes_global = pendientes_global / total_global * 100 if total_global > 0 else 0
 
-    # Métricas principales con tres columnas
-    col1, col2, col3 = st.columns(3)
+        # Métricas principales con tres columnas
+        col1, col2, col3 = st.columns(3)
 
-    with col1:
-        if not df_indicadores.empty:
+        with col1:
             # Usar None como delta para no mostrar la flecha
             st.metric(
                 "Indicadores Institucionales", 
@@ -825,11 +838,10 @@ def main():
                 <span style="color:#FEC109;font-weight:bold;">⏱ Pendientes:</span> {pendientes_inst} ({porc_pendientes_inst:.1f}%)
             </div>
             """, unsafe_allow_html=True)
-        else:
-            st.metric("Indicadores Institucionales", "Sin datos", "")
+        # else:
+        #     st.metric("Indicadores Institucionales", "Sin datos", "")
 
-    with col2:
-        if not df_indicadores.empty:
+        with col2:
             st.metric(
                 "Indicadores Territoriales", 
                 f"{porc_completitud_terr:.1f}% Completados", 
@@ -844,11 +856,10 @@ def main():
                 <span style="color:#FEC109;font-weight:bold;">⏱ Pendientes:</span> {pendientes_terr} ({porc_pendientes_terr:.1f}%)
             </div>
             """, unsafe_allow_html=True)
-        else:
-            st.metric("Indicadores Territoriales", "Sin datos", "")
+        # else:
+        #     st.metric("Indicadores Territoriales", "Sin datos", "")
 
-    with col3:
-        if not df_indicadores.empty:
+        with col3:
             st.metric(
                 "Avance General", 
                 f"{porc_completitud_global:.1f}% Completado", 
@@ -863,8 +874,9 @@ def main():
                 <span style="color:#FEC109;font-weight:bold;">⏱ Pendientes:</span> {pendientes_global} ({porc_pendientes_global:.1f}%)
             </div>
             """, unsafe_allow_html=True)
-        else:
-            st.metric("Avance General", "Sin datos", "")
+        # else:
+        #     st.metric("Avance General", "Sin datos", "")
+
     
     # Pestañas para diferentes análisis
     tab1, tab2, tab3, tab4, tab5, tab6, tab7= st.tabs([
