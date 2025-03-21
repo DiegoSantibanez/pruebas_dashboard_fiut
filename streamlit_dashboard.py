@@ -1024,10 +1024,7 @@ def main():
     
     # NOTA: Añadir metodología de trabajo
     # TAB 4: Insights Adicionales
-    with tab3:
-        # Cargar datos de indicadores
-        df_indicadores = cargar_indicadores()
-        
+    with tab3:        
         # Si los datos se cargaron correctamente, mostrar el gráfico interactivo
         if not df_indicadores.empty:
             crear_grafico_estados_interactivo(df_indicadores)
