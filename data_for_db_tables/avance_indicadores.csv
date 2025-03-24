@@ -1,0 +1,187 @@
+id^id_indicador^dimension^indicador^indicador_reformulado^estado^origen^fecha_actualizacion
+1^I_1^Dimensión 1: Modelo de Gestión, Costos, Datos, Gobernanza y Normativas^N° Tesis de pre y postgrado que contribuyen a soluciones reales^N° Tesis de pre y postgrado que contribuyen a soluciones del territorio^EN PROCESO^Institucional^20250312
+2^I_2^Dimensión 1: Modelo de Gestión, Costos, Datos, Gobernanza y Normativas^Porcentaje de participación de especialistas o expertos UTEM en mesas técnicas gubernamentales para actualización de normativas o mesas de trabajo para toma de decisiones en el sector productivo con influencia en el territorio.^-^PENDIENTE^Institucional^20250312
+3^I_3^Dimensión 1: Modelo de Gestión, Costos, Datos, Gobernanza y Normativas^Monto total anual asignado en fondos para I+D i+e (proyectos externos, publicaciones, entre otros, AIUE, AFD).^-^EN PROCESO^Institucional^20250312
+4^I_4^Dimensión 2: Infraestructura y equipamiento^N° de laboratorios por Facultad y departamento. Docencia, investigación, pre y postgrado.^-^EN PROCESO^Institucional^20250312
+5^I_5^Dimensión 2: Infraestructura y equipamiento^N° de equipos computacionales de alto rendimiento por laboratorio.^-^EN PROCESO^Institucional^20250312
+6^I_6^Dimensión 2: Infraestructura y equipamiento^M2 dedicados a laboratorios de investigación v/s laboratorio científico por Facultad/ la cantidad de investigadores activos.^N° M2 dedicados a laboratorios de investigación v/s laboratorio científico por Facultad/ la cantidad de investigadores activos.^EN PROCESO^Institucional^20250312
+7^I_7^Dimensión 2: Infraestructura y equipamiento^Catastro de equipamiento científico/tecnológico desagregado por unidad.^N° de de equipamiento científico/tecnológico desagregado por unidad.^EN PROCESO^Institucional^20250312
+8^I_8^Dimensión 2: Infraestructura y equipamiento^Costo Presupuestario a nivel institucional para la compra de equipamiento científico-Tecnológico/Costo Real ejecutado.^-^EN PROCESO^Institucional^20250312
+9^I_9^Dimensión 3: Programas de postgrado y claustros académicos.^N° y porcentaje de Programas Acreditados^-^LISTO^Institucional^20250312
+10^I_10^Dimensión 3: Programas de postgrado y claustros académicos.^Porcentaje de cobertura de programas por área de conocimiento.^-^LISTO^Institucional^20250312
+11^I_11^Dimensión 3: Programas de postgrado y claustros académicos.^N° de tesis de postgrado que contribuyen al desarrollo local a través de convenios A+S con organismos públicos.^-^LISTO^Institucional^20250312
+12^I_12^Dimensión 3: Programas de postgrado y claustros académicos.^N° de claustros académicos de programas de postgrado acreditados y no acreditados.^-^LISTO^Institucional^20250312
+13^I_13^Dimensión 3: Programas de postgrado y claustros académicos.^N° de tesis de doctorado con financiamiento de empresas, becas ANID, por año.^-^EN PROCESO^Institucional^20250312
+14^I_14^Dimensión 4: Líneas de investigación y capital humano avanzado.^N° de investigadores activos por publicaciones, tipo de proyectos, por área de conocimiento, por líneas de investigación.^-^LISTO^Institucional^20250312
+15^I_15^Dimensión 4: Líneas de investigación y capital humano avanzado.^N° de Proyectos de interés público/privado^-^LISTO^Institucional^20250312
+16^I_16^Dimensión 4: Líneas de investigación y capital humano avanzado.^N° de Activos tecnológicos Institucionales/Facultad/ ODS^-^EN PROCESO^Institucional^20250312
+17^I_17^Dimensión 4: Líneas de investigación y capital humano avanzado.^N° de académicos jornada completa con grado de doctor, diferenciados por sexo.^-^LISTO^Institucional^20250312
+18^I_18^Dimensión 4: Líneas de investigación y capital humano avanzado.^Cantidad de estudiantes activos insertos de proyectos de investigación y /o actividades de vinculación con el medio por facultad, por área, por territorio/ cantidad de estudiantes por facultad.^N° de estudiantes activos insertos de proyectos de investigación y /o actividades de vinculación con el medio por facultad, por área, por territorio/ cantidad de estudiantes por facultad.^EN PROCESO^Institucional^20250312
+19^I_19^Dimensión 4: Líneas de investigación y capital humano avanzado.^investigadores con financiemto que desarrollan i+d+i+e con pertineencia territorial^N° de investigadores con financiamiento de proyectos que desarrollan i+d+i+e con pertineencia territorial^EN PROCESO^Institucional^20250312
+20^I_20^Dimensión 5: Colaboración Internacional^N° Pasantía e intercambios internacionales (estudiantes y académicos) (incluir los que llegan a utem y lo que salen de utem)^-^PENDIENTE^Institucional^20250312
+21^I_21^Dimensión 5: Colaboración Internacional^N° y porcentaje de proyectos internacionales postulados versus adjudicados^-^PENDIENTE^Institucional^20250312
+22^I_22^Dimensión 5: Colaboración Internacional^N° de convenios internacionales por programa de postgrado^-^PENDIENTE^Institucional^20250312
+23^I_23^Dimensión 5: Colaboración Internacional^N° de publicaciones con colaboración internacional^-^LISTO^Institucional^20250312
+24^I_24^Dimensión 5: Colaboración Internacional^N° de convenio internacionales institucionales versus académicos y estudiantes activos^-^EN PROCESO^Institucional^20250312
+25^I_25^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia^N° y porcentaje de estudiantes participando en proyectos o acciones de vinculación en innovación, transferencia y emprendimiento.^-^PENDIENTE^Institucional^20250312
+26^I_26^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia^Porcentaje de tesis de pregrado y postgrado que cumplen entre 1 y 3 ODS.^-^EN PROCESO^Institucional^20250312
+27^I_27^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia^N° de marcas de tecnologías y propias UTEM anual.^N° de marcas de tecnologías y propias UTEM por año^EN PROCESO^Institucional^20250312
+28^I_28^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia^N° de Contratos tecnológicos con empresas nacionales, internacionales por año.^-^LISTO^Institucional^20250312
+29^I_29^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia^N° de solicitudes de patentes/ modelos utilidad versus N° de patentes concedidas/ modelos utilidad concedidos en Chile, internacional.^-^LISTO^Institucional^20250312
+30^I_30^Dimensión 7: Vinculación, difusión y redes asociadas a actividades de I+D+i.^Porcentaje de proyectos de investigación de interés público.^-^EN PROCESO^Institucional^20250312
+31^I_31^Dimensión 7: Vinculación, difusión y redes asociadas a actividades de I+D+i.^N° de redes nacionales con participación activa.^-^EN PROCESO^Institucional^20250312
+32^I_32^Dimensión 7: Vinculación, difusión y redes asociadas a actividades de I+D+i.^N° de seminarios o talleres realizados con actores externos a la institución en I+D+ i +e.^-^PENDIENTE^Institucional^20250312
+33^I_33^Dimensión 7: Vinculación, difusión y redes asociadas a actividades de I+D+i.^N° Pasantía e intercambios internacionales (estudiantes y academicos).^-^PENDIENTE^Institucional^20250312
+34^I_34^Dimensión 1: Modelo de Gestión, Costos, Datos, Gobernanza y Normativas^Monto total anual asignado en incentivos a publicaciones^-^PENDIENTE^Institucional^20250312
+35^I_35^Dimensión 2: Infraestructura y equipamiento.^N° de espacios Cowork por campus / Porcentaje de Infraestructura para desarrollo de Cowork por campus. (m2 de espacio disponible para Cowork de estudiantes y egresados Programas de Vinculación y Transferencia)^Cambiar co-work por salas de estudios^EN PROCESO^Institucional^20250312
+36^I_36^Dimensión 2: Infraestructura y equipamiento.^N° de horas anuales de uso de equipos computacionales de alto rendimiento (cluster Instituto).^-^PENDIENTE^Institucional^20250312
+37^I_37^Dimensión 2: Infraestructura y equipamiento.^N° Proyectos internos/externos apoyados por equipamiento específico.^Reformular como proyecto externo/interno que adquieren equipamiento^PENDIENTE^Institucional^20250312
+38^I_38^Dimensión 2: Infraestructura y equipamiento.^Tasa de recursos apalancados con fondos externos de Laboratorios de investigación por año^-^LISTO^Institucional^20250312
+39^I_39^Dimensión 2: Infraestructura y equipamiento.^Tasa de recursos apalancados con fondos externos de Laboratorios de investigación aplicada por año^-^LISTO^Institucional^20250312
+40^I_40^Dimensión 2: Infraestructura y equipamiento.^Costo mantenimiento de equipo institucional por año^-^PENDIENTE^Institucional^20250312
+41^I_41^Dimensión 2: Infraestructura y equipamiento.^Impacto de citas de los artículos científicos generados por ODS, por territorio.^-^LISTO^Institucional^20250312
+42^I_42^Dimensión 2: Infraestructura y equipamiento.^Cantidad de estudiantes activos insertos de proyectos de investigación y /o actividades de vinculación con el medio por facultad, por área, por territorio/ cantidad de estudiantes por facultad.^-^EN PROCESO^Institucional^20250312
+43^I_43^Dimensión 2: Infraestructura y equipamiento.^Cantidad de estudiantes activos que participan en publicaciones.^-^LISTO^Institucional^20250312
+44^I_44^Dimensión 2: Infraestructura y equipamiento.^Cantidad de académicos activos que participan en publicaciones.^-^LISTO^Institucional^20250312
+45^I_45^Dimensión 2: Infraestructura y equipamiento.^Cantidad de académicos activos que participan en proyectos externos de investigación aplicada^-^EN PROCESO^Institucional^20250312
+46^I_46^Dimensión 2: Infraestructura y equipamiento.^Cantidad de académicos activos que participan en proyectos externos de investigación básica^-^EN PROCESO^Institucional^20250312
+47^I_47^Dimensión 2: Infraestructura y equipamiento.^Catastro de contratos tecnológicos, cantidad (centros/unidades), presupuesto, por áreas de conocimiento, objetivo por convenios.^-^LISTO^Institucional^20250312
+48^I_48^Dimensión 2: Infraestructura y equipamiento.^Indicador de tiempos de ejecución de los proyectos^Tiempo promedio de ejecución de proyectos de investigación en meses.^EN PROCESO^Institucional^20250312
+49^I_49^Dimensión 2: Infraestructura y equipamiento.^Catastro de empresas por líneas prioritarias de investigación^Definir el concepto de líneas prioritarias^PENDIENTE^Institucional^20250312
+50^I_50^Dimensión 2: Infraestructura y equipamiento.^N° de laboratorios por Facultad y departamento^-^LISTO^Institucional^20250312
+51^I_51^Dimensión 3: Programas de postgrado y claustros académicos.^N° de estudiantes de postgrado por líneas de investigación prioritarias^-^EN PROCESO^Institucional^20250312
+52^I_52^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^Porcentaje de proyectos de investigación que contribuyen con datos de interés público en formatos normalizados (repositorio).^-^EN PROCESO^Institucional^20250312
+53^I_53^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^Académicos por ODS.^Número total de académicos que participan en proyectos alineados con los Objetivos de Desarrollo Sostenible (ODS), desglosado por ODS.^EN PROCESO^Institucional^20250312
+54^I_54^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^Porcentaje cumplimiento de ODS por proyecto de investigación.^Reformular^EN PROCESO^Institucional^20250312
+55^I_55^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^Cumplimiento de objetivos en porcentaje.^Porcentaje de proyectos de investigación que cumplen al menos el 80% de los objetivos planteados en su planificación inicial.^EN PROCESO^Institucional^20250312
+56^I_56^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^Tasa de presupuesto planificado v/s ejecutado por año.^-^EN PROCESO^Institucional^20250312
+57^I_57^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^N° de proyectos adjudicados de la subdirección de Redes-Estrategia y conocimiento ANID versus N° de proyectos postulados de la subdirección de subdirección de Redes-Estrategia y conocimiento ANID.^-^EN PROCESO^Institucional^20250312
+58^I_58^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^N° de estudiantes con Becas de financiamiento ANID.^-^PENDIENTE^Institucional^20250312
+59^I_59^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^N° de estudiantes con Becas de financiamiento internacional o empresas.^-^PENDIENTE^Institucional^20250312
+60^I_60^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^N° de programas de postgrado con formación semipresencial.^-^EN PROCESO^Institucional^20250312
+61^I_61^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia tecnológica^N° de estudiantes que continúan carrera investigativa asociada a proyectos de investigación una vez titulados.^Porcentaje de estudiantes titulados que se integran en programas de investigación o postgrado dentro del primer año después de su titulación.^EN PROCESO^Institucional^20250312
+62^I_62^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia tecnológica^N° de proyectos adjudicados de la Subdirección Aplicada ANID versus N° de proyectos postulados de la Subdirección Aplicada^-^EN PROCESO^Institucional^20250312
+63^I_63^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia tecnológica^N° de proyectos adjudicados de la subdirección de Investigación ANID versus N° de proyectos postulados de la subdirección de Investigación ANID^-^EN PROCESO^Institucional^20250312
+64^I_64^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia tecnológica^N° de Contratos tecnológicos con empresas internacionales^-^PENDIENTE^Institucional^20250312
+65^I_65^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia tecnológica^N° de postulaciones a fondos con financiamiento externo versus proyectos adjudicados^-^PENDIENTE^Institucional^20250312
+66^I_66^Dimensión 7: Vinculación, difusión y redes asociadas a actividades de I+D+i.^Tasa de proyecto externos adjudicados versus postulados^-^PENDIENTE^Institucional^20250312
+67^T_1^Dimensión 1: Características socioeconómicas del territorio^Tasa de empleo por sector productivo^^LISTO^Territorial^20250312
+68^T_2^Dimensión 1: Características socioeconómicas del territorio^Índice de Prioridad Social (IPS) desglosado por comunas (salud, educación, ingresos)^^EN PROCESO^Territorial^20250312
+69^T_3^Dimensión 1: Características socioeconómicas del territorio^Porcentaje de población que mejora su nivel educativo.^^LISTO^Territorial^20250312
+70^T_4^Dimensión 2: Capacidad del territorio para integrar soluciones sostenibles^Porcentaje de generación de energía proveniente de fuentes renovables^^EN PROCESO^Territorial^20250312
+71^T_5^Dimensión 2: Capacidad del territorio para integrar soluciones sostenibles^Número de proyectos de economía circular implementados (públicos, privados y académicos)^^EN PROCESO^Territorial^20250312
+72^T_6^Dimensión 2: Capacidad del territorio para integrar soluciones sostenibles^Áreas verdes por habitante^^LISTO^Territorial^20250312
+73^T_7^Dimensión 2: Capacidad del territorio para integrar soluciones sostenibles^Reduccon de emisiones de CO? en sectores clave (transporte, energía, industria).^^EN PROCESO^Territorial^20250312
+74^T_8^Dimensión 3: Capacidades del capital humano en nuevas economías^Porcentaje de población con formación técnica o profesional en áreas STEM^^LISTO^Territorial^20250312
+75^T_9^Dimensión 3: Capacidades del capital humano en nuevas economías^Número de capacitaciones en nuevas tecnologías realizadas en la región^^LISTO^Territorial^20250312
+76^T_10^Dimensión 3: Capacidades del capital humano en nuevas economías^Tasa de egresados en programas relacionados con economía circular, IA, big data^^LISTO^Territorial^20250312
+77^T_11^Dimensión 3: Capacidades del capital humano en nuevas economías^Tasa de inserción laboral en sectores de nuevas economías en la región^^PENDIENTE^Territorial^20250312
+78^T_12^Dimensión 3: Capacidades del capital humano en nuevas economías^Diferenciación entre formación inicial y formación continua.^^EN PROCESO^Territorial^20250312
+79^T_13^Dimensión 4: Infraestructura tecnológica y de innovación^Cantidad de empresas de base científico-tecnológica^^LISTO^Territorial^20250312
+80^T_14^Dimensión 4: Infraestructura tecnológica y de innovación^Acceso a infraestructura de telecomunicaciones (cobertura de fibra óptica, 5G)^^EN PROCESO^Territorial^20250312
+81^T_15^Dimensión 4: Infraestructura tecnológica y de innovación^Disponibilidad de laboratorios y centros de innovación por comuna^^PENDIENTE^Territorial^20250312
+82^T_16^Dimensión 4: Infraestructura tecnológica y de innovación^Nivel de conectividad digital (porcentaje de hogares con acceso a internet)^^EN PROCESO^Territorial^20250312
+83^T_17^Dimensión 4: Infraestructura tecnológica y de innovación^Porcentaje del PIB regional destinado a investigación y desarrollo^^EN PROCESO^Territorial^20250312
+84^T_18^Dimensión 4: Infraestructura tecnológica y de innovación^Cantidad de patentes registradas en tecnología e innovación por año.^^EN PROCESO^Territorial^20250312
+85^T_19^Dimensión 5: Impacto de nuevas tecnologías en calidad de vida e inclusión social^Número de emprendimientos apoyados por tecnologías emergentes^^PENDIENTE^Territorial^20250312
+86^T_20^Dimensión 5: Impacto de nuevas tecnologías en calidad de vida e inclusión social^Uso de tecnologías digitales en servicios públicos (salud, educaci�n, transporte)^^PENDIENTE^Territorial^20250312
+87^T_21^Dimensión 5: Impacto de nuevas tecnologías en calidad de vida e inclusión social^Brecha digital (porcentaje de población sin acceso a internet o dispositivos y nivel de habilidades digitales)^^EN PROCESO^Territorial^20250312
+88^T_22^Dimensión 6: Identificación de brechas de género en nuevas economías y tecnologías^Porcentaje de mujeres en áreas STEM y en proyectos de innovación^^EN PROCESO^Territorial^20250312
+89^T_23^Dimensión 6: Identificación de brechas de género en nuevas economías y tecnologías^Brecha salarial por género en sectores tecnológicos^^EN PROCESO^Territorial^20250312
+90^T_24^Dimensión 6: Identificación de brechas de género en nuevas economías y tecnologías^Porcentaje de emprendimientos liderados por mujeres^^EN PROCESO^Territorial^20250312
+91^T_25^Dimensión 6: Identificación de brechas de género en nuevas economías y tecnologías^Participación femenina en programas de capacitación tecnológica^^EN PROCESO^Territorial^20250312
+92^T_26^Dimensión 6: Identificación de brechas de género en nuevas economías y tecnologías^Acceso a financiamiento para mujeres emprendedoras^^EN PROCESO^Territorial^20250312
+93^T_27^Dimensión 6: Identificación de brechas de género en nuevas economías y tecnologías^Diferenciación entre participación en niveles de liderazgo (o toma de decisiones) y posiciones técnicas en STEM.^^PENDIENTE^Territorial^20250312
+94^I_1^Dimensión 1: Modelo de Gestión, Costos, Datos, Gobernanza y Normativas^N° Tesis de pre y postgrado que contribuyen a soluciones reales^N° Tesis de pre y postgrado que contribuyen a soluciones del territorio^EN PROCESO^Institucional^20250319
+95^I_2^Dimensión 1: Modelo de Gestión, Costos, Datos, Gobernanza y Normativas^Porcentaje de participación de especialistas o expertos UTEM en mesas técnicas gubernamentales para actualización de normativas o mesas de trabajo para toma de decisiones en el sector productivo con influencia en el territorio.^-^PENDIENTE^Institucional^20250319
+96^I_3^Dimensión 1: Modelo de Gestión, Costos, Datos, Gobernanza y Normativas^Monto total anual asignado en fondos para I+D i+e (proyectos externos, publicaciones, entre otros, AIUE, AFD).^-^EN PROCESO^Institucional^20250319
+97^I_4^Dimensión 2: Infraestructura y equipamiento^N° de laboratorios por Facultad y departamento. Docencia, investigación, pre y postgrado.^-^EN PROCESO^Institucional^20250319
+98^I_5^Dimensión 2: Infraestructura y equipamiento^N° de equipos computacionales de alto rendimiento por laboratorio.^-^LISTO^Institucional^20250319
+99^I_6^Dimensión 2: Infraestructura y equipamiento^M2 dedicados a laboratorios de investigación v/s laboratorio científico por Facultad/ la cantidad de investigadores activos.^N° M2 dedicados a laboratorios de investigación v/s laboratorio científico por Facultad/ la cantidad de investigadores activos.^EN PROCESO^Institucional^20250319
+100^I_7^Dimensión 2: Infraestructura y equipamiento^Catastro de equipamiento científico/tecnológico desagregado por unidad.^N° de equipamiento científico/tecnológico desagregado por unidad.^EN PROCESO^Institucional^20250319
+101^I_8^Dimensión 2: Infraestructura y equipamiento^Costo Presupuestario a nivel institucional para la compra de equipamiento científico-Tecnológico/Costo Real ejecutado.^-^EN PROCESO^Institucional^20250319
+102^I_9^Dimensión 3: Programas de postgrado y claustros académicos.^N° y porcentaje de Programas Acreditados^-^LISTO^Institucional^20250319
+103^I_10^Dimensión 3: Programas de postgrado y claustros académicos.^Porcentaje de cobertura de programas por área de conocimiento.^-^LISTO^Institucional^20250319
+104^I_11^Dimensión 3: Programas de postgrado y claustros académicos.^N° de tesis de postgrado que contribuyen al desarrollo local a través de convenios A+S con organismos públicos.^-^LISTO^Institucional^20250319
+105^I_12^Dimensión 3: Programas de postgrado y claustros académicos.^N° de claustros académicos de programas de postgrado acreditados y no acreditados.^-^LISTO^Institucional^20250319
+106^I_13^Dimensión 3: Programas de postgrado y claustros académicos.^N° de tesis de doctorado con financiamiento de empresas, becas ANID, por año.^-^EN PROCESO^Institucional^20250319
+107^I_14^Dimensión 4: Líneas de investigación y capital humano avanzado.^N° de investigadores activos por publicaciones, tipo de proyectos, por área de conocimiento, por líneas de investigación.^-^LISTO^Institucional^20250319
+108^I_15^Dimensión 4: Líneas de investigación y capital humano avanzado.^N° de Proyectos de interés público/privado^-^LISTO^Institucional^20250319
+109^I_16^Dimensión 4: Líneas de investigación y capital humano avanzado.^N° de Activos tecnológicos Institucionales/Facultad/ ODS^-^EN PROCESO^Institucional^20250319
+110^I_17^Dimensión 4: Líneas de investigación y capital humano avanzado.^N° de académicos jornada completa con grado de doctor, diferenciados por sexo.^-^LISTO^Institucional^20250319
+111^I_18^Dimensión 4: Líneas de investigación y capital humano avanzado.^Cantidad de estudiantes activos insertos de proyectos de investigación y /o actividades de vinculación con el medio por facultad, por área, por territorio/ cantidad de estudiantes por facultad.^N° de estudiantes activos insertos de proyectos de investigación y /o actividades de vinculación con el medio por facultad, por área, por territorio/ cantidad de estudiantes por facultad.^EN PROCESO^Institucional^20250319
+112^I_19^Dimensión 4: Líneas de investigación y capital humano avanzado.^investigadores con financiemto que desarrollan i+d+i+e con pertineencia territorial^N° de investigadores con financiamiento de proyectos que desarrollan i+d+i+e con pertineencia territorial^EN PROCESO^Institucional^20250319
+113^I_20^Dimensión 5: Colaboración Internacional^N° Pasantía e intercambios internacionales (estudiantes y académicos) (incluir los que llegan a utem y lo que salen de utem)^-^PENDIENTE^Institucional^20250319
+114^I_21^Dimensión 5: Colaboración Internacional^N° y porcentaje de proyectos internacionales postulados versus adjudicados^-^PENDIENTE^Institucional^20250319
+115^I_22^Dimensión 5: Colaboración Internacional^N° de convenios internacionales por programa de postgrado^-^PENDIENTE^Institucional^20250319
+116^I_23^Dimensión 5: Colaboración Internacional^N° de publicaciones con colaboración internacional^-^LISTO^Institucional^20250319
+117^I_24^Dimensión 5: Colaboración Internacional^N° de convenio internacionales institucionales versus académicos y estudiantes activos^-^EN PROCESO^Institucional^20250319
+118^I_25^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia^N° y porcentaje de estudiantes participando en proyectos o acciones de vinculación en innovación, transferencia y emprendimiento.^-^PENDIENTE^Institucional^20250319
+119^I_26^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia^Porcentaje de tesis de pregrado y postgrado que cumplen entre 1 y 3 ODS.^-^EN PROCESO^Institucional^20250319
+120^I_27^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia^N° de marcas de tecnologías y propias UTEM anual.^N° de marcas de tecnologías y propias UTEM por año^LISTO^Institucional^20250319
+121^I_28^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia^N° de Contratos tecnológicos con empresas nacionales, internacionales por año.^-^LISTO^Institucional^20250319
+122^I_29^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia^N° de solicitudes de patentes/ modelos utilidad versus N° de patentes concedidas/ modelos utilidad concedidos en Chile, internacional.^-^LISTO^Institucional^20250319
+123^I_30^Dimensión 7: Vinculación, difusión y redes asociadas a actividades de I+D+i.^Porcentaje de proyectos de investigación de interés público.^-^EN PROCESO^Institucional^20250319
+124^I_31^Dimensión 7: Vinculación, difusión y redes asociadas a actividades de I+D+i.^N° de redes nacionales con participación activa.^-^EN PROCESO^Institucional^20250319
+125^I_32^Dimensión 7: Vinculación, difusión y redes asociadas a actividades de I+D+i.^N° de seminarios o talleres realizados con actores externos a la institución en I+D+ i +e.^-^PENDIENTE^Institucional^20250319
+126^I_33^Dimensión 7: Vinculación, difusión y redes asociadas a actividades de I+D+i.^N° Pasantía e intercambios internacionales (estudiantes y academicos).^-^PENDIENTE^Institucional^20250319
+127^I_34^Dimensión 1: Modelo de Gestión, Costos, Datos, Gobernanza y Normativas^Monto total anual asignado en incentivos a publicaciones^-^PENDIENTE^Institucional^20250319
+128^I_35^Dimensión 2: Infraestructura y equipamiento.^N° de espacios Cowork por campus / Porcentaje de Infraestructura para desarrollo de Cowork por campus. (m2 de espacio disponible para Cowork de estudiantes y egresados Programas de Vinculación y Transferencia)^Cambiar co-work por salas de estudios^EN PROCESO^Institucional^20250319
+129^I_36^Dimensión 2: Infraestructura y equipamiento.^N° de horas anuales de uso de equipos computacionales de alto rendimiento (cluster Instituto).^-^LISTO^Institucional^20250319
+130^I_37^Dimensión 2: Infraestructura y equipamiento.^N° Proyectos internos/externos apoyados por equipamiento específico.^Reformular como proyecto externo/interno que adquieren equipamiento^PENDIENTE^Institucional^20250319
+131^I_38^Dimensión 2: Infraestructura y equipamiento.^Tasa de recursos apalancados con fondos externos de Laboratorios de investigación por año^-^LISTO^Institucional^20250319
+132^I_39^Dimensión 2: Infraestructura y equipamiento.^Tasa de recursos apalancados con fondos externos de Laboratorios de investigación aplicada por año^-^LISTO^Institucional^20250319
+133^I_40^Dimensión 2: Infraestructura y equipamiento.^Costo mantenimiento de equipo institucional por año^-^PENDIENTE^Institucional^20250319
+134^I_41^Dimensión 2: Infraestructura y equipamiento.^Impacto de citas de los artículos científicos generados por ODS, por territorio.^-^LISTO^Institucional^20250319
+135^I_42^Dimensión 2: Infraestructura y equipamiento.^Cantidad de estudiantes activos insertos de proyectos de investigación y /o actividades de vinculación con el medio por facultad, por área, por territorio/ cantidad de estudiantes por facultad.^-^EN PROCESO^Institucional^20250319
+136^I_43^Dimensión 2: Infraestructura y equipamiento.^Cantidad de estudiantes activos que participan en publicaciones.^-^LISTO^Institucional^20250319
+137^I_44^Dimensión 2: Infraestructura y equipamiento.^Cantidad de académicos activos que participan en publicaciones.^-^LISTO^Institucional^20250319
+138^I_45^Dimensión 2: Infraestructura y equipamiento.^Cantidad de académicos activos que participan en proyectos externos de investigación aplicada^-^EN PROCESO^Institucional^20250319
+139^I_46^Dimensión 2: Infraestructura y equipamiento.^Cantidad de académicos activos que participan en proyectos externos de investigación básica^-^EN PROCESO^Institucional^20250319
+140^I_47^Dimensión 2: Infraestructura y equipamiento.^Catastro de contratos tecnológicos, cantidad (centros/unidades), presupuesto, por áreas de conocimiento, objetivo por convenios.^-^LISTO^Institucional^20250319
+141^I_48^Dimensión 2: Infraestructura y equipamiento.^Indicador de tiempos de ejecución de los proyectos^Tiempo promedio de ejecución de proyectos de investigación en meses.^EN PROCESO^Institucional^20250319
+142^I_49^Dimensión 2: Infraestructura y equipamiento.^Catastro de empresas por líneas prioritarias de investigación^Definir el concepto de líneas prioritarias^LISTO^Institucional^20250319
+143^I_50^Dimensión 2: Infraestructura y equipamiento.^N° de laboratorios por Facultad y departamento^-^LISTO^Institucional^20250319
+144^I_51^Dimensión 3: Programas de postgrado y claustros académicos.^N° de estudiantes de postgrado por líneas de investigación prioritarias^-^EN PROCESO^Institucional^20250319
+145^I_52^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^Porcentaje de proyectos de investigación que contribuyen con datos de interés público en formatos normalizados (repositorio).^-^EN PROCESO^Institucional^20250319
+146^I_53^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^Académicos por ODS.^Número total de académicos que participan en proyectos alineados con los Objetivos de Desarrollo Sostenible (ODS), desglosado por ODS.^LISTO^Institucional^20250319
+147^I_54^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^Porcentaje cumplimiento de ODS por proyecto de investigación.^Reformular^LISTO^Institucional^20250319
+148^I_55^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^Cumplimiento de objetivos en porcentaje.^Porcentaje de proyectos de investigación que cumplen al menos el 80% de los objetivos planteados en su planificación inicial.^EN PROCESO^Institucional^20250319
+149^I_56^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^Tasa de presupuesto planificado v/s ejecutado por año.^-^EN PROCESO^Institucional^20250319
+150^I_57^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^N° de proyectos adjudicados de la subdirección de Redes-Estrategia y conocimiento ANID versus N° de proyectos postulados de la subdirección de subdirección de Redes-Estrategia y conocimiento ANID.^-^EN PROCESO^Institucional^20250319
+151^I_58^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^N° de estudiantes con Becas de financiamiento ANID.^-^PENDIENTE^Institucional^20250319
+152^I_59^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^N° de estudiantes con Becas de financiamiento internacional o empresas.^-^PENDIENTE^Institucional^20250319
+153^I_60^Dimensión 4: Líneas de Investigación y Capital Humano Avanzado^N° de programas de postgrado con formación semipresencial.^-^LISTO^Institucional^20250319
+154^I_61^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia tecnológica^N° de estudiantes que continúan carrera investigativa asociada a proyectos de investigación una vez titulados.^Porcentaje de estudiantes titulados que se integran en programas de investigación o postgrado dentro del primer año después de su titulación.^EN PROCESO^Institucional^20250319
+155^I_62^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia tecnológica^N° de proyectos adjudicados de la Subdirección Aplicada ANID versus N° de proyectos postulados de la Subdirección Aplicada^-^EN PROCESO^Institucional^20250319
+156^I_63^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia tecnológica^N° de proyectos adjudicados de la subdirección de Investigación ANID versus N° de proyectos postulados de la subdirección de Investigación ANID^-^EN PROCESO^Institucional^20250319
+157^I_64^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia tecnológica^N° de Contratos tecnológicos con empresas internacionales^-^PENDIENTE^Institucional^20250319
+158^I_65^Dimensión 6: Mecanismos de innovación, emprendimiento y transferencia tecnológica^N° de postulaciones a fondos con financiamiento externo versus proyectos adjudicados^-^PENDIENTE^Institucional^20250319
+159^I_66^Dimensión 7: Vinculación, difusión y redes asociadas a actividades de I+D+i.^Tasa de proyecto externos adjudicados versus postulados^-^PENDIENTE^Institucional^20250319
+160^T_1^Dimensión 1: Características socioeconómicas del territorio^Tasa de empleo por sector productivo^^LISTO^Territorial^20250319
+161^T_2^Dimensión 1: Características socioeconómicas del territorio^Índice de Prioridad Social (IPS) desglosado por comunas (salud, educación, ingresos)^^EN PROCESO^Territorial^20250319
+162^T_3^Dimensión 1: Características socioeconómicas del territorio^Porcentaje de población que mejora su nivel educativo.^^LISTO^Territorial^20250319
+163^T_4^Dimensión 2: Capacidad del territorio para integrar soluciones sostenibles^Porcentaje de generación de energía proveniente de fuentes renovables^^EN PROCESO^Territorial^20250319
+164^T_5^Dimensión 2: Capacidad del territorio para integrar soluciones sostenibles^Número de proyectos de economía circular implementados (públicos, privados y académicos)^^EN PROCESO^Territorial^20250319
+165^T_6^Dimensión 2: Capacidad del territorio para integrar soluciones sostenibles^Áreas verdes por habitante^^LISTO^Territorial^20250319
+166^T_7^Dimensión 2: Capacidad del territorio para integrar soluciones sostenibles^Reduccon de emisiones de CO? en sectores clave (transporte, energía, industria).^^EN PROCESO^Territorial^20250319
+167^T_8^Dimensión 3: Capacidades del capital humano en nuevas economías^Porcentaje de población con formación técnica o profesional en áreas STEM^^LISTO^Territorial^20250319
+168^T_9^Dimensión 3: Capacidades del capital humano en nuevas economías^Número de capacitaciones en nuevas tecnologías realizadas en la región^^LISTO^Territorial^20250319
+169^T_10^Dimensión 3: Capacidades del capital humano en nuevas economías^Tasa de egresados en programas relacionados con economía circular, IA, big data^^LISTO^Territorial^20250319
+170^T_11^Dimensión 3: Capacidades del capital humano en nuevas economías^Tasa de inserción laboral en sectores de nuevas economías en la región^^PENDIENTE^Territorial^20250319
+171^T_12^Dimensión 3: Capacidades del capital humano en nuevas economías^Diferenciación entre formación inicial y formación continua.^^EN PROCESO^Territorial^20250319
+172^T_13^Dimensión 4: Infraestructura tecnológica y de innovación^Cantidad de empresas de base científico-tecnológica^^LISTO^Territorial^20250319
+173^T_14^Dimensión 4: Infraestructura tecnológica y de innovación^Acceso a infraestructura de telecomunicaciones (cobertura de fibra óptica, 5G)^^EN PROCESO^Territorial^20250319
+174^T_15^Dimensión 4: Infraestructura tecnológica y de innovación^Disponibilidad de laboratorios y centros de innovación por comuna^^PENDIENTE^Territorial^20250319
+175^T_16^Dimensión 4: Infraestructura tecnológica y de innovación^Nivel de conectividad digital (porcentaje de hogares con acceso a internet)^^EN PROCESO^Territorial^20250319
+176^T_17^Dimensión 4: Infraestructura tecnológica y de innovación^Porcentaje del PIB regional destinado a investigación y desarrollo^^EN PROCESO^Territorial^20250319
+177^T_18^Dimensión 4: Infraestructura tecnológica y de innovación^Cantidad de patentes registradas en tecnología e innovación por año.^^EN PROCESO^Territorial^20250319
+178^T_19^Dimensión 5: Impacto de nuevas tecnologías en calidad de vida e inclusión social^Número de emprendimientos apoyados por tecnologías emergentes^^PENDIENTE^Territorial^20250319
+179^T_20^Dimensión 5: Impacto de nuevas tecnologías en calidad de vida e inclusión social^Uso de tecnologías digitales en servicios públicos (salud, educaci�n, transporte)^^PENDIENTE^Territorial^20250319
+180^T_21^Dimensión 5: Impacto de nuevas tecnologías en calidad de vida e inclusión social^Brecha digital (porcentaje de población sin acceso a internet o dispositivos y nivel de habilidades digitales)^^EN PROCESO^Territorial^20250319
+181^T_22^Dimensión 6: Identificación de brechas de género en nuevas economías y tecnologías^Porcentaje de mujeres en áreas STEM y en proyectos de innovación^^EN PROCESO^Territorial^20250319
+182^T_23^Dimensión 6: Identificación de brechas de género en nuevas economías y tecnologías^Brecha salarial por género en sectores tecnológicos^^EN PROCESO^Territorial^20250319
+183^T_24^Dimensión 6: Identificación de brechas de género en nuevas economías y tecnologías^Porcentaje de emprendimientos liderados por mujeres^^EN PROCESO^Territorial^20250319
+184^T_25^Dimensión 6: Identificación de brechas de género en nuevas economías y tecnologías^Participación femenina en programas de capacitación tecnológica^^EN PROCESO^Territorial^20250319
+185^T_26^Dimensión 6: Identificación de brechas de género en nuevas economías y tecnologías^Acceso a financiamiento para mujeres emprendedoras^^EN PROCESO^Territorial^20250319
+186^T_27^Dimensión 6: Identificación de brechas de género en nuevas economías y tecnologías^Diferenciación entre participación en niveles de liderazgo (o toma de decisiones) y posiciones técnicas en STEM.^^PENDIENTE^Territorial^20250319

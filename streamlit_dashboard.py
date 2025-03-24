@@ -411,6 +411,13 @@ def crear_grafico_estados_interactivo(df):
             ["Estado", "Dimensión", "Origen"],
             index=0
         )
+
+    # O para todas las columnas de texto en el dataframe
+    for col in df.select_dtypes(include=['object']).columns:
+        try:
+            df[col] = df[col].str.encode('latin-1').str.decode('utf-8')
+        except:
+            pass
     
     # Filtrar datos según la selección
     if origen_option == "Institucional":
@@ -513,7 +520,7 @@ def crear_grafico_estados_interactivo(df):
         </ul>
         </div>
         """, unsafe_allow_html=True)
-    
+
     # Mostrar tabla de datos filtrados
     with st.expander("Ver datos detallados"):
         st.dataframe(
@@ -545,6 +552,12 @@ def cargar_indicadores_db():
         """
         
         df = pd.read_sql(query, engine)
+        # O para todas las columnas de texto en el dataframe
+        for col in df.select_dtypes(include=['object']).columns:
+            try:
+                df[col] = df[col].str.encode('latin-1').str.decode('utf-8')
+            except:
+                pass
         return df, ultima_fecha
             
     except Exception as e:
@@ -605,7 +618,7 @@ def mostrar_treemap_dimensiones():
         st.warning("Los archivos CSV no tienen el formato esperado. Usando datos simulados.")
         
         # Crear dataframes simulados basados en el CSV de porcentajes avances
-        df_indicadores = cargar_indicadores()
+        df_indicadores = cargar_indicadores_db()
         
         # Verificar si se cargó el archivo de indicadores
         if df_indicadores.empty:
@@ -784,9 +797,9 @@ def main():
     df_indicadores, ultima_fecha = cargar_indicadores_db()
     
     # Mostrar la fecha de actualización de los datos
-    if ultima_fecha:
-        fecha_str = str(ultima_fecha)
-        st.info(f"Datos actualizados al: {fecha_str[:4]}-{fecha_str[4:6]}-{fecha_str[6:]}")
+    # if ultima_fecha:
+    #     fecha_str = str(ultima_fecha)
+    #     st.info(f"Datos actualizados al: {fecha_str[:4]}-{fecha_str[4:6]}-{fecha_str[6:]}")
     
     # Calcular porcentajes de completitud y conteos por estado
     if not df_indicadores.empty:
