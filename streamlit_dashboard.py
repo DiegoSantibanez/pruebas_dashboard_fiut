@@ -544,7 +544,8 @@ def cargar_indicadores_db():
             ai.id_indicador AS 'ID', 
             ai.dimension AS 'Dimension', 
             ai.estado AS 'Estado', 
-            ai.origen AS 'Origen' 
+            ai.origen AS 'Origen' ,
+            ai.indicador AS 'Indicador'
         FROM 
             fiut.avance_indicadores ai 
         WHERE 
@@ -573,66 +574,67 @@ def mostrar_treemap_dimensiones():
     """
     st.subheader("Treemap de dimensiones e indicadores")
     
-    # Verificar archivos disponibles y mostrar información de depuración
-    archivos_disp = [f for f in os.listdir('data') if f.endswith('.csv')]
+    # # Verificar archivos disponibles y mostrar información de depuración
+    # archivos_disp = [f for f in os.listdir('data') if f.endswith('.csv')]
     
-    if not any(f.lower() in ['institucional.csv', 'territorial.csv'] for f in archivos_disp):
-        st.error("No se encontraron los archivos necesarios: Institucional.csv y territorial.csv")
-        st.info(f"Archivos CSV disponibles: {', '.join(archivos_disp)}")
-        st.info(f"Directorio actual: {os.getcwd()}")
-        return
+    # if not any(f.lower() in ['institucional.csv', 'territorial.csv'] for f in archivos_disp):
+    #     st.error("No se encontraron los archivos necesarios: Institucional.csv y territorial.csv")
+    #     st.info(f"Archivos CSV disponibles: {', '.join(archivos_disp)}")
+    #     st.info(f"Directorio actual: {os.getcwd()}")
+    #     return
     
-    # Función para cargar datos con mejor manejo de errores
-    def cargar_csv_seguro(nombre_archivo):
-        try:
-            # Intenta diferentes codificaciones
-            for encoding in ['utf-8', 'latin-1', 'ISO-8859-1', 'cp1252']:
-                try:
-                    ruta_completa = os.path.join(os.getcwd(), nombre_archivo)
-                    df = pd.read_csv(ruta_completa, encoding=encoding)
-                    return df
-                except UnicodeDecodeError:
-                    continue
-                except Exception as e:
-                    st.warning(f"Error al cargar {nombre_archivo} con {encoding}: {str(e)}")
-                    continue
+    # # Función para cargar datos con mejor manejo de errores
+    # def cargar_csv_seguro(nombre_archivo):
+    #     try:
+    #         # Intenta diferentes codificaciones
+    #         for encoding in ['utf-8', 'latin-1', 'ISO-8859-1', 'cp1252']:
+    #             try:
+    #                 ruta_completa = os.path.join(os.getcwd(), nombre_archivo)
+    #                 df = pd.read_csv(ruta_completa, encoding=encoding)
+    #                 return df
+    #             except UnicodeDecodeError:
+    #                 continue
+    #             except Exception as e:
+    #                 st.warning(f"Error al cargar {nombre_archivo} con {encoding}: {str(e)}")
+    #                 continue
             
-            # Si ninguna codificación funcionó
-            st.error(f"No se pudo cargar {nombre_archivo} con ninguna codificación.")
-            return None
-        except Exception as e:
-            st.error(f"Error inesperado al cargar {nombre_archivo}: {str(e)}")
-            return None
+    #         # Si ninguna codificación funcionó
+    #         st.error(f"No se pudo cargar {nombre_archivo} con ninguna codificación.")
+    #         return None
+    #     except Exception as e:
+    #         st.error(f"Error inesperado al cargar {nombre_archivo}: {str(e)}")
+    #         return None
     
-    # Cargar los dataframes
-    institucional_df = cargar_csv_seguro('data/Institucional.csv')
-    territorial_df = cargar_csv_seguro('data/territorial.csv')
+    # # Cargar los dataframes
+    # institucional_df = cargar_csv_seguro('data/Institucional.csv')
+    # territorial_df = cargar_csv_seguro('data/territorial.csv')
     
-    # Verificar si se cargaron los datos
-    if institucional_df is None or territorial_df is None:
-        st.error("No se pudieron cargar uno o ambos archivos CSV.")
-        return
+    # # Verificar si se cargaron los datos
+    # if institucional_df is None or territorial_df is None:
+    #     st.error("No se pudieron cargar uno o ambos archivos CSV.")
+    #     return
     
-    # Crear datos simulados si los archivos no contienen la estructura esperada
-    if 'Dimension' not in institucional_df.columns or 'Indicador' not in institucional_df.columns:
-        st.warning("Los archivos CSV no tienen el formato esperado. Usando datos simulados.")
+    # # Crear datos simulados si los archivos no contienen la estructura esperada
+    # if 'Dimension' not in institucional_df.columns or 'Indicador' not in institucional_df.columns:
+    #     st.warning("Los archivos CSV no tienen el formato esperado. Usando datos simulados.")
         
-        # Crear dataframes simulados basados en el CSV de porcentajes avances
-        df_indicadores = cargar_indicadores_db()
-        
-        # Verificar si se cargó el archivo de indicadores
-        if df_indicadores.empty:
-            st.error("No se pudieron cargar los datos de indicadores.")
-            return
-        
-        # Crear dataframes simulados
-        institucional_df = df_indicadores[df_indicadores['Origen'] == 'Institucional'].copy()
-        institucional_df['Dimension'] = institucional_df['Dimension']
-        institucional_df['Indicador'] = institucional_df['ID'] + ": " + institucional_df['Estado']
-        
-        territorial_df = df_indicadores[df_indicadores['Origen'] == 'Territorial'].copy()
-        territorial_df['Dimension'] = territorial_df['Dimension']
-        territorial_df['Indicador'] = territorial_df['ID'] + ": " + territorial_df['Estado']
+    # Crear dataframes simulados basados en el CSV de porcentajes avances
+    df_indicadores,_ = cargar_indicadores_db()
+    print(df_indicadores)
+    
+    # Verificar si se cargó el archivo de indicadores
+    # if df_indicadores.empty:
+    #     st.error("No se pudieron cargar los datos de indicadores.")
+    #     return
+    
+    # Crear dataframes simulados
+    institucional_df = df_indicadores[df_indicadores['Origen'] == 'Institucional'].copy()
+    institucional_df['Dimension'] = institucional_df['Dimension']
+    # institucional_df['Indicador'] = institucional_df['ID'] + ": " + institucional_df['Esta    do']
+    
+    territorial_df = df_indicadores[df_indicadores['Origen'] == 'Territorial'].copy()
+    territorial_df['Dimension'] = territorial_df['Dimension']
+    # territorial_df['Indicador'] = territorial_df['ID'] + ": " + territorial_df['Estado']
     
     # Convertir "Indicadores" a "Indicador" para uniformidad
     if 'Indicadores' in territorial_df.columns and 'Indicador' not in territorial_df.columns:
