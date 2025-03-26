@@ -411,7 +411,6 @@ def crear_grafico_estados_interactivo(df):
             ["Estado", "Dimensión", "Origen"],
             index=0
         )
-
     # O para todas las columnas de texto en el dataframe
     for col in df.select_dtypes(include=['object']).columns:
         try:
@@ -430,11 +429,32 @@ def crear_grafico_estados_interactivo(df):
         df_filtrado = df
         titulo_origen = "Global"
     
+    # Definir mapas de colores para diferentes categorías
+    color_map_estados = {
+        "PENDIENTE": "#FEC109",  # Amarillo
+        "EN PROCESO": "#1E88E5",  # Azul medio
+        "LISTO": "#0A5C99"       # Azul oscuro
+    }
+    
+    # Colores base para otras categorías
+    colores_base = ['#0A5C99', '#1E88E5', '#FEC109', '#FC9F0B', '#4CAF50', '#9C27B0', '#FF5722']
+    
     # Agrupar datos según la selección
     if agrupar_por == "Estado":
         conteo = df_filtrado['Estado'].value_counts().reset_index()
         conteo.columns = ['categoria', 'conteo']
         titulo = f'Distribución por Estado - {titulo_origen}'
+        
+        # Orden personalizado para estados: PENDIENTE, EN PROCESO, LISTO
+        orden_estados = {"PENDIENTE": 1, "EN PROCESO": 2, "LISTO": 3}
+        conteo['orden'] = conteo['categoria'].map(orden_estados)
+        conteo = conteo.sort_values('orden')
+        conteo = conteo.drop('orden', axis=1)
+        
+        # Asignar colores a cada categoría para estados
+        colors = [color_map_estados.get(cat, "#FC9F0B") for cat in conteo['categoria']]
+        color_map = dict(zip(conteo['categoria'], colors))
+        
     elif agrupar_por == "Dimensión":
         # Extraer solo el nombre de la dimensión (sin el número)
         df_filtrado['Dimension_Simple'] = df_filtrado['Dimension'].apply(
@@ -442,55 +462,50 @@ def crear_grafico_estados_interactivo(df):
         )
         conteo = df_filtrado['Dimension_Simple'].value_counts().reset_index()
         conteo.columns = ['categoria', 'conteo']
+        conteo = conteo.sort_values('categoria')
         titulo = f'Distribución por Dimensión - {titulo_origen}'
+        
+        # Repetir colores si hay más categorías que colores
+        colors = colores_base * (len(conteo) // len(colores_base) + 1)
+        colors = colors[:len(conteo)]
+        color_map = dict(zip(conteo['categoria'], colors))
+        
     else:  # Origen
         conteo = df_filtrado['Origen'].value_counts().reset_index()
         conteo.columns = ['categoria', 'conteo']
-        titulo = f'Distribución por Origen - {titulo_origen}'
-    
-    # Ordenar por categoría (excepto para Estado que tiene un orden específico)
-    if agrupar_por != "Estado":
         conteo = conteo.sort_values('categoria')
-    else:
-        # Orden personalizado para estados: PENDIENTE, EN PROCESO, LISTO
-        orden_estados = {"PENDIENTE": 1, "EN PROCESO": 2, "LISTO": 3}
-        conteo['orden'] = conteo['categoria'].map(orden_estados)
-        conteo = conteo.sort_values('orden')
-        conteo = conteo.drop('orden', axis=1)
+        titulo = f'Distribución por Origen - {titulo_origen}'
+        
+        # Asignar colores para origen (usualmente solo hay dos: Institucional y Territorial)
+        colors = colores_base[:len(conteo)]
+        color_map = dict(zip(conteo['categoria'], colors))
     
-    # Mostrar resumen numérico
+    # Mostrar resumen numérico con colores consistentes
     with col1:
         st.markdown(f"### Resumen")
         total = conteo['conteo'].sum()
         for i, row in conteo.iterrows():
             porcentaje = round(row['conteo'] / total * 100, 1)
-            st.markdown(f"**{row['categoria']}**: {row['conteo']} ({porcentaje}%)")
+            # Usar el mismo color para las etiquetas que en el gráfico
+            color = color_map[row['categoria']]
+            st.markdown(
+                f"<div style='display:flex; align-items:center;'>"
+                f"<div style='width:15px; height:15px; background-color:{color}; margin-right:8px; border-radius:3px;'></div>"
+                f"<div><strong>{row['categoria']}</strong>: {row['conteo']} ({porcentaje}%)</div>"
+                f"</div>", 
+                unsafe_allow_html=True
+            )
     
-    # Crear gráfico con la paleta personalizada
+    # Crear gráfico con los mismos colores definidos anteriormente
     with col2:
-        # Paleta de colores según el tipo de agrupación
-        if agrupar_por == "Estado":
-            # Paleta específica para estados
-            color_map = {
-                "PENDIENTE": "#FEC109",  # Amarillo
-                "EN PROCESO": "#1E88E5",  # Azul medio
-                "LISTO": "#0A5C99"       # Azul oscuro
-            }
-            colors = [color_map.get(cat, "#FC9F0B") for cat in conteo['categoria']]
-        else:
-            # Usar la paleta general para otras agrupaciones
-            colors = ['#0A5C99', '#1E88E5', '#FEC109', '#FC9F0B', '#4CAF50', '#9C27B0', '#FF5722']
-            # Repetir colores si hay más categorías que colores
-            colors = colors * (len(conteo) // len(colors) + 1)
-            colors = colors[:len(conteo)]
-        
         fig = px.pie(
             conteo, 
             values='conteo', 
             names='categoria',
             title=titulo,
             hole=0.3,
-            color_discrete_sequence=colors
+            color='categoria',
+            color_discrete_map=color_map
         )
         
         # Configurar texto
@@ -510,17 +525,32 @@ def crear_grafico_estados_interactivo(df):
     
     # Mostrar datos adicionales o interpretación
     if agrupar_por == "Estado":
-        st.markdown("""
-        <div style="background-color:#f0f2f6; padding:15px; border-radius:10px; margin-top:10px;">
-        <h4>Interpretación de Estados</h4>
-        <ul>
-            <li><strong>PENDIENTE:</strong> Indicadores que aún no han iniciado su implementación</li>
-            <li><strong>EN PROCESO:</strong> Indicadores que están actualmente en fase de implementación</li>
-            <li><strong>LISTO:</strong> Indicadores que han sido completados</li>
-        </ul>
-        </div>
-        """, unsafe_allow_html=True)
-
+        # Agregar colores a la interpretación de estados también
+        estado_html = "<div style='background-color:#f0f2f6; padding:15px; border-radius:10px; margin-top:10px;'>"
+        estado_html += "<h4>Interpretación de Estados</h4><ul>"
+        
+        for estado in ["PENDIENTE", "EN PROCESO", "LISTO"]:
+            if estado in color_map:
+                color = color_map[estado]
+                estado_html += f"<li><div style='display:flex; align-items:center;'>"
+                estado_html += f"<div style='width:15px; height:15px; background-color:{color}; margin-right:8px; border-radius:3px;'></div>"
+                estado_html += f"<strong>{estado}:</strong> "
+                
+                if estado == "PENDIENTE":
+                    descripcion = "Indicadores que aún no han iniciado su implementación"
+                elif estado == "EN PROCESO":
+                    descripcion = "Indicadores que están actualmente en fase de implementación"
+                elif estado == "LISTO":
+                    descripcion = "Indicadores que han sido completados"
+                else:
+                    descripcion = "Estado sin descripción"
+                    
+                estado_html += f"{descripcion}</div></li>"
+            
+        estado_html += "</ul></div>"
+        
+        st.markdown(estado_html, unsafe_allow_html=True)
+    
     # Mostrar tabla de datos filtrados
     with st.expander("Ver datos detallados"):
         st.dataframe(
@@ -630,7 +660,7 @@ def mostrar_treemap_dimensiones():
     # Crear dataframes simulados
     institucional_df = df_indicadores[df_indicadores['Origen'] == 'Institucional'].copy()
     institucional_df['Dimension'] = institucional_df['Dimension']
-    # institucional_df['Indicador'] = institucional_df['ID'] + ": " + institucional_df['Esta    do']
+    # institucional_df['Indicador'] = institucional_df['ID'] + ": " + institucional_df['Estado']
     
     territorial_df = df_indicadores[df_indicadores['Origen'] == 'Territorial'].copy()
     territorial_df['Dimension'] = territorial_df['Dimension']
