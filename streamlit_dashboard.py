@@ -650,7 +650,7 @@ def mostrar_treemap_dimensiones():
         
     # Crear dataframes simulados basados en el CSV de porcentajes avances
     df_indicadores,_ = cargar_indicadores_db()
-    print(df_indicadores)
+    # print(df_indicadores)
     
     # Verificar si se cargó el archivo de indicadores
     # if df_indicadores.empty:
